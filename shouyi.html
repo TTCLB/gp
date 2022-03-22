@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="referrer" content="no-referrer"/>
+<meta name="referrer" content="never"/>
+<meta name="referrer" content="same-origin"/>
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+		<link rel="shortcut icon" href="/favicon.ico">
+    <!-- Styles -->
+           <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+           <link href="assets/css/style.css" rel="stylesheet">
+           <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+           <title>股票预计收益计算</title>
+    <script>
+    </script>
+</head>
+
+<body class="bg-primary">
+
+    <div class="unix-login">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <span style="color:#000000">股票预计收益计算</span>
+                        </div>
+                         <div class="card">
+                             <div class="card-title" id="tou" style="margin-bottom:-5%">
+                                 </div>
+
+                                <div class="card-body">
+                                    <div class="input-sizes">
+                                        <form class="form-horizontal fc-view" >
+                                                  
+                                   <div class="form-group" style="top">
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="chengben" type="text" placeholder="成本价" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" onclick="qingkong()">
+                                                    
+                                                </div>
+               
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="mubiao" type="text" placeholder="目标价"  class="form-control" onblur="lsgc()" onclick="qingkong1()">
+                                                    
+                                                </div>
+                                            </div>   
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="chicang" type="text" placeholder="持仓"  class="form-control" onblur="lsgc()" onclick="qingkong2()" >
+                                                    
+                                                </div>
+                                            </div>                                             
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="shouyi" type="text" placeholder="收益"  class="form-control" >
+                                                    
+                                                </div>
+                                            </div>        
+                                            
+                                   </div>
+
+                                   
+
+                                        
+                                        </form>
+                                    </div>
+                                </div>
+                         </div>           
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/laydate/laydate.js"></script>
+    <script src="assets/layer_mobile/layer.js"></script>
+    <script src="js/date.format.js"></script>
+    <script src="js/gbk.js"></script>
+   <script>
+   document.onkeydown = keyListener;
+function keyListener(e) {
+// 当按下回车键，执行我们的代码
+    if (e.keyCode == 13) {
+SubInfo();
+    }
+}
+function charu(soure, start, newStr){   
+   return soure.slice(0, start) + newStr + soure.slice(start);
+}
+
+
+
+function qingkong(){
+
+    document.getElementById('chengben').value="";
+    
+}
+
+function qingkong1(){
+
+    document.getElementById('mubiao').value="";
+    
+}
+function qingkong2(){
+
+    document.getElementById('chicang').value="";
+    
+}
+function lsgc(){
+var chengben =$("#chengben").val();
+var mubiao =$("#mubiao").val();
+var chicang =$("#chicang").val();
+document.getElementById('shouyi').value=((Number(mubiao)-Number(chengben))*Number(chicang)).toFixed(2);
+
+}
+
+
+
+
+
+
+
+   </script>
+</body>
+
+</html>
