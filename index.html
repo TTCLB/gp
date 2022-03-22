@@ -82,7 +82,7 @@
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
                                                     <select class="form-control" id="zt"  style="margin-bottom:-3%">
-																<option value="">3点后当日收盘连板价</option>
+																<option value="">实时价格连板价</option>
 													</select>
                                                     
                                                 </div>
@@ -351,12 +351,7 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                 success:function(result){
                     console.log(daima)
                     if(result.length!=undefined){
-                    var zzt=Number(result[0].hq[0][2]);
-                    for(var aa=1;aa<11;aa++){
-                             zzt=(zzt*1.1).toFixed(2);
-                             nr=aa+"板:"+zzt;
-                             obj1.add(new Option(nr,aa));                        
-                    }
+
                     for(var a=0;a<result[0].hq.length;a++){
                         var zhi=result[0].hq[a][4].replace("%","");
                         console.log("前"+(a+1)+"天涨幅:"+zhi)
@@ -408,6 +403,13 @@ obj1.add(new Option("3点后当日收盘连板价",0));
                                  data:"{}",                         
                     success:function(zhishu){
                         cf = zhishu.split("~");
+                        console.log(cf[13])
+                    var zzt=Number(cf[13]);
+                    for(var aa=1;aa<11;aa++){
+                             zzt=(zzt*1.1).toFixed(2);
+                             nr=aa+"板:"+zzt;
+                             obj1.add(new Option(nr,aa));                        
+                    }                        
                           console.log("实时指数涨幅:"+cf[5])
                           console.log("实时个股涨幅:"+cf[15])
                           document.getElementById('wei').value="盘中偏离值:"+((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(2)+youguan;
