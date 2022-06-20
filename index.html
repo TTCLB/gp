@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -244,11 +246,14 @@ console.log(daima)
  }
  var dzh=0;
  var zzh=0;
+ var dd=0;
+ var gd=0;
  var js=0;
  var stime=0;
  var etime=sj;
  var bd=0;
  var jsbd=0;
+ var pz=0;
  if(sj==sj1){
      for(var i=1;i<10;i++){
          var curTime = new Date().getTime();
@@ -293,7 +298,7 @@ obj1.add(new Option("实时价格连板价",0));
                          code=xin.data.list[c].art_code;
                          shijian=xin.data.list[c].notice_date.split(" ");
                          shijian=shijian[0];
-                         console.log(Date.parse(new Date(shijian)))
+
                          neirong=xin.data.list[c].title;
                          if(neirong.indexOf("波动")!=-1 || neirong.indexOf("停牌")!=-1 || neirong.indexOf("关注函")!=-1){
                              yd=yd+1;
@@ -348,15 +353,22 @@ obj1.add(new Option("实时价格连板价",0));
                              //data:"{}",
                              ContentType:'application/javascript',
                 success:function(result){
-                    console.log(daima)
-                    if(result.length!=undefined){
 
-                    for(var a=0;a<result[0].hq.length;a++){
-                        var zhi=result[0].hq[a][4].replace("%","");
-                        console.log("前"+(a+1)+"天涨幅:"+zhi)
-                        if(Number(zhi)>0){dzh=dzh+Number(zhi);}
+                    if(result.length!=undefined){
+                    console.log(result)
+                    if(result[0].hq.length=3) {pz=1}
+                    cd=result[0].hq.length-1;
+                    dd=Number(result[0].hq[cd][2]);
+                    gd=Number(result[0].hq[0][2]);
+                    dzh=((gd-dd)/dd*100).toFixed(2);
+                    console.log(dzh)
+                    //for(var a=0;a<result[0].hq.length;a++){
+                      
+                        //var zhi=result[0].hq[a][4].replace("%","");
+                       // console.log("前"+(a+1)+"天个股涨幅:"+zhi)
+                        //if(Number(zhi)>0){dzh=dzh+Number(zhi);}
                         
-                    }                         
+                   // }                         
                $.ajax({
                 type:"get",//请求服务器载入数据
                 //async: false,
@@ -392,7 +404,13 @@ obj1.add(new Option("实时价格连板价",0));
                              
                     console.log("个股涨幅合:"+dzh)
                     console.log("指数涨幅合:"+zzh)
-                    document.getElementById('pianli').value="盘后偏离值:"+(dzh-zzh).toFixed(2);
+                    if(pz=1){
+                    document.getElementById('pianli').value="【看这里】盘后偏离值:"+(dzh-zzh).toFixed(2);
+                    }
+                    else
+                    {
+                        document.getElementById('pianli').value="盘后偏离值:"+(dzh-zzh).toFixed(2);
+                    }
                    $.ajax({
                     type:"get",//请求服务器载入数据
                     //async: false,
@@ -402,7 +420,7 @@ obj1.add(new Option("实时价格连板价",0));
                                  data:"{}",                         
                     success:function(zhishu){
                         cf = zhishu.split("~");
-                        console.log(cf[13])
+                        console.log(cf)
                     var zzt=Number(cf[13]);
                     for(var aa=1;aa<11;aa++){
                              zzt=(zzt*1.1).toFixed(2);
@@ -411,7 +429,15 @@ obj1.add(new Option("实时价格连板价",0));
                     }                        
                           console.log("实时指数涨幅:"+cf[5])
                           console.log("实时个股涨幅:"+cf[15])
-                          document.getElementById('wei').value="盘中偏离值:"+((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(2)+youguan;
+                          dzh=((Number(cf[13])-dd)/dd*100).toFixed(2);
+                          
+                      if(pz=0){    
+                          document.getElementById('wei').value="【看这里】盘中偏离值:"+((dzh)-(zzh+Number(cf[5]))).toFixed(2)+youguan;
+                      }
+                      else{
+                          document.getElementById('wei').value="盘中偏离值:"+((dzh)-(zzh+Number(cf[5]))).toFixed(2)+youguan;
+                      }
+                          
                       var tou = document.getElementById("tou");
                       var h55 =document.createElement("h4");
                       if(jsbd!=0){
@@ -526,7 +552,7 @@ obj1.add(new Option("实时价格连板价",0));
                          code=xin.data.list[c].art_code;
                          shijian=xin.data.list[c].notice_date.split(" ");
                          shijian=shijian[0];
-                         console.log(Date.parse(new Date(shijian)))
+                       
                          neirong=xin.data.list[c].title;
                          if(neirong.indexOf("波动")!=-1 || neirong.indexOf("停牌")!=-1 || neirong.indexOf("关注函")!=-1){
                              yd=yd+1;
@@ -583,13 +609,13 @@ obj1.add(new Option("实时价格连板价",0));
                 success:function(result){
                     console.log(daima)
                     if(result.length!=undefined){
-
-                    for(var a=0;a<result[0].hq.length;a++){
-                        var zhi=result[0].hq[a][4].replace("%","");
-                        console.log("前"+(a+1)+"天涨幅:"+zhi)
-                        if(Number(zhi)>0){dzh=dzh+Number(zhi);}
-                        
-                    }                         
+                    console.log(result)
+                    cd=result[0].hq.length-1;
+                    if(result[0].hq.length=3) {pz=1}
+                    dd=Number(result[0].hq[cd][2]);
+                    gd=Number(result[0].hq[0][2]);
+                    dzh=((gd-dd)/dd*100).toFixed(2);
+                    console.log(dzh)                        
                $.ajax({
                 type:"get",//请求服务器载入数据
                 //async: false,
@@ -624,7 +650,13 @@ obj1.add(new Option("实时价格连板价",0));
                     
                     console.log("个股涨幅合:"+dzh)
                     console.log("指数涨幅合:"+zzh)
-                    document.getElementById('pianli').value="盘后偏离值:"+(dzh-zzh).toFixed(2);;
+                    if(pz=1){
+                    document.getElementById('pianli').value="【看这里】盘后偏离值:"+(dzh-zzh).toFixed(2);
+                    }
+                    else
+                    {
+                        document.getElementById('pianli').value="盘后偏离值:"+(dzh-zzh).toFixed(2);
+                    }
                    $.ajax({
                     type:"get",//请求服务器载入数据
                     //async: false,
@@ -634,7 +666,7 @@ obj1.add(new Option("实时价格连板价",0));
                                  data:"{}",                         
                     success:function(zhishu){
                         cf = zhishu.split("~");
-                        console.log(cf[13])
+ 
                     var zzt=Number(cf[13]);
                     for(var aa=1;aa<11;aa++){
                              zzt=(zzt*1.1).toFixed(2);
@@ -643,7 +675,13 @@ obj1.add(new Option("实时价格连板价",0));
                     }
                           console.log("实时指数涨幅:"+cf[5])
                           console.log("实时个股涨幅:"+cf[15])
-                          document.getElementById('wei').value="盘中偏离值:"+((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(2)+youguan;
+                          dzh=((Number(cf[13])-dd)/dd*100).toFixed(2);
+                          if(pz=0){
+                          document.getElementById('wei').value="【看这里】盘中偏离值:"+((dzh)-(zzh+Number(cf[5]))).toFixed(2)+youguan;
+                          }
+                          else{
+                              document.getElementById('wei').value="盘中偏离值:"+((dzh)-(zzh+Number(cf[5]))).toFixed(2)+youguan;
+                          }
                       var tou = document.getElementById("tou");
                       var h55 =document.createElement("h4");
                       if(jsbd!=0){
