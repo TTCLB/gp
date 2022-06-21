@@ -263,7 +263,7 @@ console.log(daima)
               js=js+1;
               stime=time.format('Ymd');
           }
-          if (js==2){
+          if (js==3){
               etime=new Date().format('Ymd');
               console.log(etime)
               break;
@@ -357,7 +357,7 @@ obj1.add(new Option("实时价格连板价",0));
                     if(result.length!=undefined){
                     console.log(result)
                     console.log(result[0].hq.length)
-                    if(result[0].hq.length==3) {pz=1}
+                    if(result[0].hq.length==4) {pz=1}
                     cd=result[0].hq.length;
                     cd=Number(cd)-1;
                     console.log(cd)
@@ -382,7 +382,7 @@ obj1.add(new Option("实时价格连板价",0));
                              crossDomain: true,
                              data:"{}",                         
                 success:function(res){
-                    for(var b=0;b<res[0].hq.length;b++){
+                    for(var b=0;b<res[0].hq.length-1;b++){
                         var zhi=res[0].hq[b][4].replace("%","");
                         console.log("前"+(b+1)+"天指数涨幅:"+zhi)
                         zzh=zzh+Number(zhi);
@@ -523,7 +523,7 @@ console.log(daima)
               js=js+1;
               stime=time.format('Ymd');
           }
-          if (js==2){
+          if (js==3){
               etime=new Date().format('Ymd');              
               break;
           }
@@ -614,7 +614,7 @@ obj1.add(new Option("实时价格连板价",0));
                     console.log(daima)
                     if(result.length!=undefined){
                     
-                    if(result[0].hq.length==3){
+                    if(result[0].hq.length==4){
                         pz=1;
                         
                     }
@@ -635,7 +635,7 @@ obj1.add(new Option("实时价格连板价",0));
                              crossDomain: true,
                              data:"{}",                         
                 success:function(res){
-                    for(var b=0;b<res[0].hq.length;b++){
+                    for(var b=0;b<res[0].hq.length-1;b++){
                         var zhi=res[0].hq[b][4].replace("%","");
                         console.log("前"+(b+1)+"天指数涨幅:"+zhi)
                         zzh=zzh+Number(zhi);
