@@ -250,6 +250,8 @@ console.log(daima)
  var bd=0;
  var jsbd=0;
  var pz=0;
+ var qgg=0;
+ var qzs=0;
  if(sj==sj1){
      for(var i=1;i<10;i++){
          var curTime = new Date().getTime();
@@ -356,15 +358,17 @@ obj1.add(new Option("实时价格连板价",0));
                     if(result[0].hq.length==4) {pz=1}
 
                     for(var a=0;a<result[0].hq.length-1;a++){
-                      
+                       if(a==0){qgg=result[0].hq[0][2]}
                         var zhi=result[0].hq[a][4].replace("%","");
                         if(zhi>=9.93&&nali=="深证"&&result[0].hq[a][2]==result[0].hq[a][6]){
                            zhi=10;
+                           
                         }
                         else{
                             //if(a<result[0].hq.length){
 
                             zhi=(result[0].hq[a][2]-result[0].hq[a+1][2])/result[0].hq[a+1][2]*100;
+                            
                             //}
                         }
                         console.log("前"+(a+1)+"天个股涨幅:"+zhi)
@@ -393,7 +397,7 @@ obj1.add(new Option("实时价格连板价",0));
                 success:function(res){
                     console.log(res)
                     for(var b=0;b<res[0].hq.length-1;b++){
-                        
+                        if(b==0){qzs=res[0].hq[0][2]}
                         var  zhi=(res[0].hq[b][2]-res[0].hq[b+1][2])/res[0].hq[b+1][2]*100;
                         console.log("前"+(b+1)+"天指数涨幅:"+zhi)
                         zzh=zzh+Number(zhi);
@@ -449,12 +453,16 @@ obj1.add(new Option("实时价格连板价",0));
                              nr=aa+"板:"+zzt;
                              obj1.add(new Option(nr,aa));                        
                     }                        
-                          console.log("实时指数涨幅:"+cf[5])
-                          console.log("实时个股涨幅:"+cf[15])
+
                          // dzh=((Number(cf[13])-dd)/dd*100).toFixed(2);
                           
                       if(pz==0){    
-                      zz=((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(3)+youguan;
+                      ggzs=(Number(cf[13])-qgg)/qgg*100;
+                      dpzs=(Number(cf[3])-qzs)/qzs*100;
+                            console.log("实时指数涨幅:"+dpzs)
+                          console.log("实时个股涨幅:"+ggzs)
+                      zz=((Number(dzh)+ggzs)-(Number(zzh)+dpzs)).toFixed(3)+youguan;
+                      console.log(zz)
                       zz=zz.substring(0,zz.lastIndexOf('.')+3);
                       console.log(zz)
                     document.getElementById('wei').value="偏离值:"+zz;
@@ -640,7 +648,7 @@ obj1.add(new Option("实时价格连板价",0));
                     if(result[0].hq.length==4) {pz=1}
 
                     for(var a=0;a<result[0].hq.length-1;a++){
-                      
+                      if(a==0){qgg=result[0].hq[0][2]}
                         var zhi=result[0].hq[a][4].replace("%","");
                         if(zhi>=9.93&&nali=="深证"&&result[0].hq[a][2]==result[0].hq[a][6]){
                            zhi=10;
@@ -651,6 +659,7 @@ obj1.add(new Option("实时价格连板价",0));
                             zhi=(result[0].hq[a][2]-result[0].hq[a+1][2])/result[0].hq[a+1][2]*100;
                             //}
                         }
+                        
                         console.log("前"+(a+1)+"天个股涨幅:"+zhi)
                         //if(Number(zhi)>0){
                             dzh=dzh+Number(zhi);
@@ -676,7 +685,7 @@ obj1.add(new Option("实时价格连板价",0));
                              data:"{}",                         
                 success:function(res){
                     for(var b=0;b<res[0].hq.length-1;b++){
-                        
+                        if(b==0){qzs=res[0].hq[0][2]}
                         var  zhi=(res[0].hq[b][2]-res[0].hq[b+1][2])/res[0].hq[b+1][2]*100;
                         console.log("前"+(b+1)+"天指数涨幅:"+zhi)
                         zzh=zzh+Number(zhi);
@@ -731,17 +740,23 @@ obj1.add(new Option("实时价格连板价",0));
                              nr=aa+"板:"+zzt;
                              obj1.add(new Option(nr,aa));                        
                     }
-                          console.log("实时指数涨幅:"+cf[5])
-                          console.log("实时个股涨幅:"+cf[15])
+
                           //dzh=((Number(cf[13])-dd)/dd*100).toFixed(2);
                               console.log(dzh) 
                                   console.log(zzh) 
-                          if(pz==0){
-                      zz=((dzh+Number(cf[15]))-(zzh+Number(cf[5]))).toFixed(3)+youguan;
+                      if(pz==0){    
+                      ggzs=(Number(cf[13])-qgg)/qgg*100;
+                      dpzs=(Number(cf[3])-qzs)/qzs*100;
+                        console.log("实时指数涨幅:"+dpzs)
+                          console.log("实时个股涨幅:"+ggzs)
+                      console.log(ggzs)
+                      zz=((Number(dzh)+ggzs)-(Number(zzh)+dpzs)).toFixed(3)+youguan;
+                      console.log(zz)
                       zz=zz.substring(0,zz.lastIndexOf('.')+3);
                       console.log(zz)
                     document.getElementById('wei').value="偏离值:"+zz;
-                          }
+
+                      }
 
                       var tou = document.getElementById("tou");
                       var h55 =document.createElement("h4");
@@ -775,12 +790,6 @@ obj1.add(new Option("实时价格连板价",0));
    
 } 
 }
-
-
-
-
-
-
 
    </script>
 </body>
