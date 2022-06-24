@@ -62,7 +62,7 @@
                                             <div class="row">
                                               <div class="col-lg-2"></div>
                                                 <div class="col-lg-8">
-                                                    <input id="wei" type="text" style="color:red" placeholder="偏离值(每出一次公告，公告时间的隔日计为3天的的第1天)"  class="form-control" >
+                                                    <input id="wei" type="text" style="color:red" placeholder="偏离值"  class="form-control" >
                                                     
                                                 </div>
                                             </div>  
@@ -132,14 +132,20 @@ function keyListener(e) {
 SubInfo();
     }
 }
-
+function checkTime(i){
+	if (i<10) 
+  {i="0" + i}
+  
+  return i
+ 
+};
 function timeFormat(date) {
     if (!date || typeof(date) === "string") {
         this.error("参数异常，请检查...");
     }
     var y = date.getFullYear(); //年
-    var m = date.getMonth() + 1; //月
-    var d = date.getDate(); //日
+    var m = checkTime(date.getMonth() + 1); //月
+    var d = checkTime(date.getDate()); //日
 
     return y + "-" + m + "-" + d;
 }
@@ -475,7 +481,9 @@ obj1.add(new Option("实时价格连板价",0));
                          jrsj=timeFormat(new Date());
                            
                       if(pz==0){  
-                         if(qssj<jrsj){
+
+                         if(qgg!=0){
+                             console.log(qgg)
                       ggzs=(Number(cf[13])-qgg)/qgg*100;
                       dpzs=(Number(cf[3])-qzs)/qzs*100;
                             console.log("实时指数涨幅:"+dpzs)
@@ -565,6 +573,9 @@ console.log(daima)
  var bd=0;
  var jsbd=0;
  var pz=0;
+ var qgg=0;
+ var qzs=0;
+  var qssj="";
  if(sj==sj1){
      for(var i=1;i<10;i++){
          var curTime = new Date().getTime();
@@ -775,7 +786,8 @@ obj1.add(new Option("实时价格连板价",0));
                          jrsj=timeFormat(new Date());
                            
                       if(pz==0){  
-                         if(qssj<jrsj){
+                          console.log(qgg)
+                         if(qgg!=0){
                       ggzs=(Number(cf[13])-qgg)/qgg*100;
                       dpzs=(Number(cf[3])-qzs)/qzs*100;
                             console.log("实时指数涨幅:"+dpzs)
