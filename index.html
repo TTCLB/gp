@@ -418,7 +418,8 @@ obj1.add(new Option("实时价格连板价",0));
                 success:function(res){
                     console.log(res)
                     for(var b=0;b<res[0].hq.length-1;b++){
-                        if(qssj<res[0].hq[a][0]){
+                        console.log(qssj)
+                        if(qssj<res[0].hq[b][0]){
                         if(b==0){qzs=res[0].hq[0][2]}
                         var  zhi=(res[0].hq[b][2]-res[0].hq[b+1][2])/res[0].hq[b+1][2]*100;
                         console.log("前"+(b+1)+"天指数涨幅:"+zhi)
@@ -482,8 +483,7 @@ obj1.add(new Option("实时价格连板价",0));
                            
                       if(pz==0){  
 
-                         if(qgg!=0){
-                             console.log(qgg)
+                        
                       ggzs=(Number(cf[13])-qgg)/qgg*100;
                       dpzs=(Number(cf[3])-qzs)/qzs*100;
                             console.log("实时指数涨幅:"+dpzs)
@@ -493,10 +493,7 @@ obj1.add(new Option("实时价格连板价",0));
                       zz=zz.substring(0,zz.lastIndexOf('.')+3);
                       console.log(zz)
                     document.getElementById('wei').value="偏离值:"+zz;
-                            }
-                            else{
-                             document.getElementById('wei').value="偏离值:0(距离上一次异动公告时间不足3天)";   
-                            }
+                     
                       }
 
                           
@@ -722,7 +719,7 @@ obj1.add(new Option("实时价格连板价",0));
                              data:"{}",                         
                 success:function(res){
                     for(var b=0;b<res[0].hq.length-1;b++){
-                        if(qssj<res[0].hq[a][0]){
+                        if(qssj<res[0].hq[b][0]){
                         if(b==0){qzs=res[0].hq[0][2]}
                         var  zhi=(res[0].hq[b][2]-res[0].hq[b+1][2])/res[0].hq[b+1][2]*100;
                         console.log("前"+(b+1)+"天指数涨幅:"+zhi)
@@ -787,7 +784,7 @@ obj1.add(new Option("实时价格连板价",0));
                            
                       if(pz==0){  
                           console.log(qgg)
-                         if(qgg!=0){
+                         
                       ggzs=(Number(cf[13])-qgg)/qgg*100;
                       dpzs=(Number(cf[3])-qzs)/qzs*100;
                             console.log("实时指数涨幅:"+dpzs)
@@ -797,10 +794,7 @@ obj1.add(new Option("实时价格连板价",0));
                       zz=zz.substring(0,zz.lastIndexOf('.')+3);
                       console.log(zz)
                     document.getElementById('wei').value="偏离值:"+zz;
-                            }
-                            else{
-                             document.getElementById('wei').value="偏离值:0(距离上一次异动公告时间不足3天)";   
-                            }
+              
                       }
 
                       var tou = document.getElementById("tou");
