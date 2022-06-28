@@ -458,7 +458,10 @@ obj1.add(new Option("实时价格连板价",0));
                       zz=(dzh-zzh).toFixed(3);
                       zz=zz.substring(0,zz.lastIndexOf('.')+3);
                       console.log(zz)
+                      if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
+                      else{
                     document.getElementById('wei').value="偏离值:"+zz+youguan;
+                      }
                     }
 
                    $.ajax({
@@ -492,8 +495,10 @@ obj1.add(new Option("实时价格连板价",0));
                       console.log(zz)
                       zz=zz.substring(0,zz.lastIndexOf('.')+3);
                       console.log(zz)
-                    document.getElementById('wei').value="偏离值:"+zz;
-                     
+                         if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
+                      else{
+                    document.getElementById('wei').value="偏离值:"+zz+youguan;
+                      }
                       }
 
                           
@@ -757,7 +762,10 @@ obj1.add(new Option("实时价格连板价",0));
                       zz=(dzh-zzh).toFixed(3);
                       zz=zz.substring(0,zz.lastIndexOf('.')+3);
                       console.log(zz)
+                      if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
+                      else{
                     document.getElementById('wei').value="偏离值:"+zz+youguan;
+                      }
                     }
 
                    $.ajax({
@@ -793,7 +801,10 @@ obj1.add(new Option("实时价格连板价",0));
                       console.log(zz)
                       zz=zz.substring(0,zz.lastIndexOf('.')+3);
                       console.log(zz)
-                    document.getElementById('wei').value="偏离值:"+zz;
+                      if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
+                      else{
+                    document.getElementById('wei').value="偏离值:"+zz+youguan;
+                      }
               
                       }
 
