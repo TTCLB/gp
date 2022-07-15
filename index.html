@@ -489,7 +489,7 @@ obj1.add(new Option("实时价格连板价",0));
                       if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
                     document.getElementById('wei').value="偏离值:"+zz+youguan;
-                    document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就关（大盘涨幅未计入）";
+                    document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";
                       }
                     }
 
@@ -514,7 +514,9 @@ obj1.add(new Option("实时价格连板价",0));
                          jrsj=timeFormat(new Date());
                            
                       if(pz==0){  
-
+                      date=new Date();
+                      h=date.getHours();
+                        
                       console.log(qgg)    
                       console.log(cf[13])
                       ggzs=(Number(cf[13])-qgg)/qgg*100;
@@ -526,6 +528,12 @@ obj1.add(new Option("实时价格连板价",0));
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
                     document.getElementById('wei').value="偏离值:"+zz+youguan;
+                    if(h>=15){
+                         gg1=((Number(cf[13])-result[0].hq[1][2])/result[0].hq[1][2]*100).toFixed(2);
+                        zs1=((Number(cf[3])-res[0].hq[2][2])/res[0].hq[1][2]*100).toFixed(2);
+                        shengyu=20-(gg1-zs1);                     
+                    document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";
+                    }
                       }
                       }
 
@@ -804,7 +812,7 @@ obj1.add(new Option("实时价格连板价",0));
                       if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
                     document.getElementById('wei').value="偏离值:"+zz+youguan;
-                    document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就关（大盘涨幅未计入）";
+                    document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";
                       }
                     }
 
@@ -831,7 +839,8 @@ obj1.add(new Option("实时价格连板价",0));
                          jrsj=timeFormat(new Date());
                            
                       if(pz==0){  
-
+                      date=new Date();
+                      h=date.getHours();
                       console.log(qgg)    
                       console.log(cf[13])
                       ggzs=(Number(cf[13])-qgg)/qgg*100;
@@ -843,6 +852,12 @@ obj1.add(new Option("实时价格连板价",0));
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
                     document.getElementById('wei').value="偏离值:"+zz+youguan;
+                    if(h>=15){
+                         gg1=((Number(cf[13])-result[0].hq[1][2])/result[0].hq[1][2]*100).toFixed(2);
+                        zs1=((Number(cf[3])-res[0].hq[2][2])/res[0].hq[1][2]*100).toFixed(2);
+                        shengyu=20-(gg1-zs1);                     
+                    document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";
+                    }
                       }
               
                       }
