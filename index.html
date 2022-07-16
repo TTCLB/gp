@@ -219,6 +219,8 @@ var daima="";
 var mama="";
 var dyyd="";
 var youguan="";
+var xingqi=new Date().getDay();
+
 if(isNaN($("#daima").val())==true){
     bianma=$URL.encode($("#daima").val());
     console.log(bianma)
@@ -374,7 +376,14 @@ obj1.add(new Option("实时价格连板价",0));
                            }
                      
                     }
-                    
+                    if(bd==1){
+                      sd=new Date(qssj);
+                      y=sd.getFullYear();
+                      m=checkTime(sd.getMonth()+1);;
+                      d=checkTime(sd.getDate()+1);
+                      qssj=y+'-'+m+'-'+d;
+                      console.log(qssj)
+                    }
 
                $.ajax({
                 type:"get",//请求服务器载入数据
@@ -460,7 +469,6 @@ obj1.add(new Option("实时价格连板价",0));
 
                         
                     }
-                    console.log(shengyu)
                     esj=charu(etime,4,"-");
                     esj=charu(esj,7,"-");
                     for(var qw=1;qw<20;qw++){//找出10天前是哪一个日期
@@ -482,8 +490,8 @@ obj1.add(new Option("实时价格连板价",0));
                     console.log("指数涨幅合:"+zzh)
                     if(pz==1){
                         
-                         gg1=((result[0].hq[0][2]-result[0].hq[2][2])/result[0].hq[2][2]*100).toFixed(2);
-                        zs1=((res[0].hq[0][2]-res[0].hq[2][2])/res[0].hq[2][2]*100).toFixed(2);
+                         gg1=((result[0].hq[0][2]-result[0].hq[qswz][2])/result[0].hq[qswz][2]*100).toFixed(2);
+                        zs1=((res[0].hq[0][2]-res[0].hq[qswz][2])/res[0].hq[qswz][2]*100).toFixed(2);
                         shengyu=20-(gg1-zs1);
                       zz=(dzh-zzh).toFixed(2);
                       if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
@@ -528,11 +536,17 @@ obj1.add(new Option("实时价格连板价",0));
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
                     document.getElementById('wei').value="偏离值:"+zz+youguan;
-                    if(h>=15){
-                         gg1=((Number(cf[13])-result[0].hq[1][2])/result[0].hq[1][2]*100).toFixed(2);
-                        zs1=((Number(cf[3])-res[0].hq[2][2])/res[0].hq[1][2]*100).toFixed(2);
+                    if(h>=15&&0>xingqi<6){
+                         gg1=((Number(cf[13])-result[0].hq[qswz][2])/result[0].hq[qswz][2]*100).toFixed(2);
+                        zs1=((Number(cf[3])-res[0].hq[qswz][2])/res[0].hq[qswz][2]*100).toFixed(2);
                         shengyu=20-(gg1-zs1);                     
                     document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";
+                    }
+                    if(xingqi==0||xingqi==6){
+                         gg1=((Number(cf[13])-result[0].hq[qswz][2])/result[0].hq[qswz][2]*100).toFixed(2);
+                        zs1=((Number(cf[3])-res[0].hq[qswz][2])/res[0].hq[qswz][2]*100).toFixed(2);
+                        shengyu=20-(gg1-zs1);                     
+                         document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";                        
                     }
                       }
                       }
@@ -691,9 +705,7 @@ obj1.add(new Option("实时价格连板价",0));
                                  if(bd==1){qssj=shijian}
                                  
                              }
-                             else{
-                                 if(ggsj<zzsj){qssj=shijian}
-                             }                             
+                           
                              nr=xin.data.list[c].columns[0].column_name+"【"+shijian+"】";
                              obj.add(new Option(nr,yd));
                          }
@@ -705,7 +717,14 @@ obj1.add(new Option("实时价格连板价",0));
                      
                     }
                     
-
+                    if(bd==1){
+                      sd=new Date(qssj);
+                      y=sd.getFullYear();
+                      m=checkTime(sd.getMonth()+1);;
+                      d=checkTime(sd.getDate()+1);
+                      qssj=y+'-'+m+'-'+d;
+                      console.log(qssj)
+                    }
                $.ajax({
                 type:"get",//请求服务器载入数据
                 //async: false,
@@ -805,8 +824,8 @@ obj1.add(new Option("实时价格连板价",0));
                     console.log("个股涨幅合:"+dzh)
                     console.log("指数涨幅合:"+zzh)
                     if(pz==1){
-                         gg1=((result[0].hq[0][2]-result[0].hq[2][2])/result[0].hq[2][2]*100).toFixed(2);
-                        zs1=((res[0].hq[0][2]-res[0].hq[2][2])/res[0].hq[2][2]*100).toFixed(2);
+                         gg1=((result[0].hq[0][2]-result[0].hq[qswz][2])/result[0].hq[qswz][2]*100).toFixed(2);
+                        zs1=((res[0].hq[0][2]-res[0].hq[qswz][2])/res[0].hq[qswz][2]*100).toFixed(2);
                         shengyu=20-(gg1-zs1);
                       zz=(dzh-zzh).toFixed(2);
                       if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
@@ -852,11 +871,17 @@ obj1.add(new Option("实时价格连板价",0));
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
                     document.getElementById('wei').value="偏离值:"+zz+youguan;
-                    if(h>=15){
-                         gg1=((Number(cf[13])-result[0].hq[1][2])/result[0].hq[1][2]*100).toFixed(2);
-                        zs1=((Number(cf[3])-res[0].hq[2][2])/res[0].hq[1][2]*100).toFixed(2);
+                    if(h>=15&&0>xingqi<6){
+                         gg1=((Number(cf[13])-result[0].hq[qswz][2])/result[0].hq[qswz][2]*100).toFixed(2);
+                        zs1=((Number(cf[3])-res[0].hq[qswz][2])/res[0].hq[qswz][2]*100).toFixed(2);
                         shengyu=20-(gg1-zs1);                     
                     document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";
+                    }
+                    if(xingqi==0||xingqi==6){
+                         gg1=((Number(cf[13])-result[0].hq[qswz][2])/result[0].hq[qswz][2]*100).toFixed(2);
+                        zs1=((Number(cf[3])-res[0].hq[qswz][2])/res[0].hq[qswz][2]*100).toFixed(2);
+                        shengyu=20-(gg1-zs1);                     
+                         document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";                        
                     }
                       }
               
