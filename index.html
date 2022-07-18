@@ -490,11 +490,13 @@ obj1.add(new Option("实时价格连板价",0));
                     console.log("指数涨幅合:"+zzh)
                     if(pz==1){
                          wz=2;
-                        if(qswz<wz){wz=qswz}                        
+                        if(qswz<wz){wz=qswz}    
+                        
                          gg1=((result[0].hq[0][2]-result[0].hq[wz][2])/result[0].hq[wz][2]*100).toFixed(2);
                         zs1=((res[0].hq[0][2]-res[0].hq[wz][2])/res[0].hq[wz][2]*100).toFixed(2);
                         shengyu=20-(gg1-zs1);
                       zz=(dzh-zzh).toFixed(2);
+                      //yidongjia=((0.2-(dzh-zzh)/100)+dzh+1)*result[0].hq[3][2];
                       if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
                     document.getElementById('wei').value="偏离值:"+zz+youguan;
@@ -533,10 +535,11 @@ obj1.add(new Option("实时价格连板价",0));
                       console.log("实时指数涨幅:"+dpzs)
                       console.log("实时个股涨幅:"+ggzs)
                       zz=(ggzs-dpzs).toFixed(2);
-
+                      yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
+                      console.log("异动:"+yidongjia)
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
-                    document.getElementById('wei').value="偏离值:"+zz+youguan;
+                    document.getElementById('wei').value="偏离值:"+zz+"【异动价:"+yidongjia+"】"+youguan;
                     if(h>=15&&0>xingqi<6){
                         wz=1;
                         if(qswz<wz){wz=qswz}
@@ -556,7 +559,6 @@ obj1.add(new Option("实时价格连板价",0));
                     }
                       }
                       }
-
                           
                       var tou = document.getElementById("tou");
                       var h55 =document.createElement("h4");
@@ -875,10 +877,11 @@ obj1.add(new Option("实时价格连板价",0));
                       console.log("实时指数涨幅:"+dpzs)
                       console.log("实时个股涨幅:"+ggzs)
                       zz=(ggzs-dpzs).toFixed(2);
-
+                      yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
+                      console.log("异动:"+yidongjia)
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
-                    document.getElementById('wei').value="偏离值:"+zz+youguan;
+                            document.getElementById('wei').value="偏离值:"+zz+"【异动价:"+yidongjia+"】"+youguan;
                     if(h>=15&&0>xingqi<6){
                         wz=1;
                         if(qswz<wz){wz=qswz}
