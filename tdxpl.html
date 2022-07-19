@@ -37,7 +37,7 @@ form-control{background-color:#1C1D21;}
 
 
 
-                         <div class="card" style="background-color:#1C1D21;">
+                         <div class="card" style="background-color:#1C1D21;margin:0;border:0">
                              <div class="card-title" id="tou" style="margin-bottom:-5%">
                                  </div>
 
@@ -45,35 +45,31 @@ form-control{background-color:#1C1D21;}
                                     <div class="input-sizes">
                                         <form class="form-horizontal fc-view" >
                                                   
-                                   <div class="form-group" >
+                               
 
 
                                             <div class="row">
-                                              <div class="col-lg-2"></div>
+                                           
                                                 <div class="col-lg-8">
                                                     <input id="wei" type="text" style="color:#F79C08;background-color:#1C1D21;border-color:#1C1D21;" placeholder="偏离值(公告时间隔日开始计算三天偏离值)"  class="form-control" >
                                                     
                                                 </div>
-                                            </div>  
-                                            <div class="row">
-                                              <div class="col-lg-2"></div>
+                                          
+                                             
                                                 <div class="col-lg-8">
                                                     <input id="wei1" type="text" style="color:#F79C08;background-color:#1C1D21;border-color:#1C1D21;" placeholder="明天剩余空间大盘未计入【盘中不显示】"  class="form-control" >
                                                     
                                                 </div>
-                                            </div>                                              
- 
-                                           <div class="row">
-                                              <div class="col-lg-2"></div>
+                                      
+                                         
                                                 <div class="col-lg-8">
                                                     <select class="form-control" id="zt"  style="margin-bottom:-3%;color:#4AD4A7;background-color:#1C1D21;border-color:#1C1D21;">
 																
 													</select>
                                                     
                                                 </div>
-                                            </div>    
-                                           <div class="row">
-                                              <div class="col-lg-2"></div>
+                                       
+                                           
                                                 <div class="col-lg-8">
                                                     <select class="form-control" id="yidong"  style="color:#4AD4A7;background-color:#1C1D21;border-color:#1C1D21;">
 																<option value="全部店铺">异动/停牌展示</option>
@@ -91,7 +87,7 @@ form-control{background-color:#1C1D21;}
                                               
                                     </div>
                                         
-                                        </form>
+                                   
                                     </div>
                                 
                    
@@ -426,16 +422,16 @@ obj.add(new Option("异动/停牌展示",0));
                     if(pz==1){
                          wz=2;
                         if(qswz<wz){wz=qswz}
-                         ggs1=((result[0].hq[0][2]-result[0].hq[wz][2])/result[0].hq[wz][2]*100).toFixed(2);
-                        zss1=((res[0].hq[0][2]-res[0].hq[wz][2])/res[0].hq[wz][2]*100).toFixed(2);
+                         ggs1=((result[0].hq[0][2]-result[0].hq[wz][2])/result[0].hq[wz][2]*100);
+                        zss1=((res[0].hq[0][2]-res[0].hq[wz][2])/res[0].hq[wz][2]*100);
                         shengyu=20-(ggs1-zss1);
                       zz=(dzh-zzh).toFixed(2);
                       if(zz<0){shengyu=-20-(gg1-zs1);}
                       if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
                           
-                    document.getElementById('wei').value="偏离值:"+zz+youguan;
-                    document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";
+                    document.getElementById('wei').value="偏离:"+zz+youguan;
+                    document.getElementById('wei1').value="明超【"+(shengyu).toFixed(2)+"%】异动";
                       }
                     }
 
@@ -489,38 +485,38 @@ obj.add(new Option("异动/停牌展示",0));
                         
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
-                    document.getElementById('wei').value="偏离值:"+zz+"【异动价:"+yidongjia+"】"+youguan;
+                    document.getElementById('wei').value="偏离:"+zz+"【异动价:"+(yidongjia).toFixed(2)+"】"+youguan;
                     if(zhis>0){
-                    document.getElementById('wei1').value="涨停深综不能小于:"+zhis+"【"+zfb+"%】否则就异动";
+                    document.getElementById('wei1').value="涨停不能小:"+zhis+"【"+zfb+"%】";
                     }
                     if(h>=15&&0>xingqi<6){
                         wz=1;
                         if(qswz<wz){wz=qswz}
-                         gg1=((Number(cf[13])-result[0].hq[wz][2])/result[0].hq[wz][2]*100).toFixed(2);
-                        zs1=((Number(cf[3])-res[0].hq[wz][2])/res[0].hq[wz][2]*100).toFixed(2);
-                        shengyu=20-(gg1-zs1);
-                        if(zz<0){shengyu=-20-(gg1-zs1);}
-                    document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】异动";
+                         gg1=((Number(cf[13])-result[0].hq[wz][2])/result[0].hq[wz][2]*100);
+                        zs1=((Number(cf[3])-res[0].hq[wz][2])/res[0].hq[wz][2]*100);
+                        shengyu=(20-(gg1-zs1)).toFixed(2); 
+                        if(zz<0){(shengyu=-20-(gg1-zs1)).toFixed(2);}
+                    document.getElementById('wei1').value="明超【"+shengyu+"%】异动";
                     }
                     else{
                         if(h<=9){
                         wz=2;
                         if(qswz<wz){wz=qswz}
-                         gg1=((Number(cf[13])-result[0].hq[wz][2])/result[0].hq[wz][2]*100).toFixed(2);
-                        zs1=((Number(cf[3])-res[0].hq[wz][2])/res[0].hq[wz][2]*100).toFixed(2);
-                        shengyu=20-(gg1-zs1); 
-                        if(zz<0){shengyu=-20-(gg1-zs1);}
-                    document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】异动";                            
+                         gg1=((Number(cf[13])-result[0].hq[wz][2])/result[0].hq[wz][2]*100);
+                        zs1=((Number(cf[3])-res[0].hq[wz][2])/res[0].hq[wz][2]*100);
+                        shengyu=(20-(gg1-zs1)).toFixed(2); 
+                        if(zz<0){(shengyu=-20-(gg1-zs1)).toFixed(2);}
+                    document.getElementById('wei1').value="明超【"+shengyu+"%】异动";                            
                         }
                     }
                     if(xingqi==0||xingqi==6){
                         wz=2;
                         if(qswz<wz){wz=qswz}
-                         gg1=((Number(cf[13])-result[0].hq[wz][2])/result[0].hq[wz][2]*100).toFixed(2);
-                        zs1=((Number(cf[3])-res[0].hq[wz][2])/res[0].hq[wz][2]*100).toFixed(2);
-                        shengyu=20-(gg1-zs1); 
-                        if(zz<0){shengyu=-20-(gg1-zs1);}
-                         document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";                        
+                         gg1=((Number(cf[13])-result[0].hq[wz][2])/result[0].hq[wz][2]*100);
+                        zs1=((Number(cf[3])-res[0].hq[wz][2])/res[0].hq[wz][2]*100);
+                        shengyu=(20-(gg1-zs1)).toFixed(2); 
+                        if(zz<0){(shengyu=-20-(gg1-zs1)).toFixed(2);}
+                         document.getElementById('wei1').value="明超【"+shengyu+"%】异动";                        
                     }
                       }
               
@@ -536,11 +532,12 @@ obj.add(new Option("异动/停牌展示",0));
                       }
                       h55.style.color="#F79C08";
                       h55.style.font.weight="bold";
+                      h55.style.fontSize="17px";
                       tou.appendChild(h55);
                       if (bd>=1){
                       var p55=document.createElement("p");
                       p55.innerHTML="10日异动起点日期:【"+dyyd+"】";
-                      p55.style.color="Gray";
+                      p55.style.color="#F8F8FF";
                       p55.style.fontSize="14px";
                       p55.style.font.weight="bold";
                       tou.appendChild(p55);
