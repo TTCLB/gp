@@ -37,8 +37,8 @@ form-control{background-color:#1C1D21;}
 
 
 
-                         <div class="card" style="background-color:#1C1D21;margin:0;border:0">
-                             <div class="card-title" id="tou" style="margin-bottom:-5%">
+                         <div class="card" style="background-color:#1C1D21;margin:0;border:0;">
+                             <div class="card-title" id="tou" style="margin-bottom:-5%;font-weight:bold">
                                  </div>
 
                                 <div class="card-body">
@@ -50,28 +50,23 @@ form-control{background-color:#1C1D21;}
 
                                             <div class="row">
                                            
-                                                <div class="col-lg-8">
-                                                    <input id="wei" type="text" style="color:#F79C08;background-color:#1C1D21;border-color:#1C1D21;" placeholder="偏离值(公告时间隔日开始计算三天偏离值)"  class="form-control" >
-                                                    
-                                                </div>
-                                          
-                                             
-                                                <div class="col-lg-8">
-                                                    <input id="wei1" type="text" style="color:#F79C08;background-color:#1C1D21;border-color:#1C1D21;" placeholder="明天剩余空间大盘未计入【盘中不显示】"  class="form-control" >
-                                                    
-                                                </div>
-                                      
+                                                
+                                                    <input id="wei" type="text" style="color:#F79C08;background-color:#1C1D21;border-color:#1C1D21;font-weight:bold" placeholder="偏离值(公告时间隔日开始计算三天偏离值)"  class="form-control" >
                                          
-                                                <div class="col-lg-8">
-                                                    <select class="form-control" id="zt"  style="margin-bottom:-3%;color:#4AD4A7;background-color:#1C1D21;border-color:#1C1D21;">
+                                                
+                                         
+                                                    <input id="wei1" type="text" style="color:#F79C08;background-color:#1C1D21;border-color:#1C1D21;font-weight:bold" placeholder="明天剩余空间大盘未计入【盘中不显示】"  class="form-control" >
+                                                   
+                                             
+                                                    <select class="form-control" id="zt"  style="margin-bottom:-3%;color:#4AD4A7;background-color:#1C1D21;border-color:#1C1D21;font-weight:bold">
 																
 													</select>
                                                     
-                                                </div>
+                                             
                                        
                                            
-                                                <div class="col-lg-8">
-                                                    <select class="form-control" id="yidong"  style="color:#4AD4A7;background-color:#1C1D21;border-color:#1C1D21;">
+                                                
+                                                    <select class="form-control" id="yidong"  style="color:#4AD4A7;background-color:#1C1D21;border-color:#1C1D21;font-weight:bold">
 																<option value="全部店铺">异动/停牌展示</option>
 													</select>
                                                     
@@ -531,15 +526,15 @@ obj.add(new Option("异动/停牌展示",0));
                           h55.innerHTML="10日内异动:【"+bd+"次】"+"《"+nali+"》";
                       }
                       h55.style.color="#F79C08";
-                      h55.style.font.weight="bold";
                       h55.style.fontSize="17px";
+                      h55.style.fontWeight="bold";
                       tou.appendChild(h55);
                       if (bd>=1){
                       var p55=document.createElement("p");
                       p55.innerHTML="10日异动起点日期:【"+dyyd+"】";
                       p55.style.color="#F8F8FF";
                       p55.style.fontSize="14px";
-                      p55.style.font.weight="bold";
+               
                       tou.appendChild(p55);
                       }  
                          
