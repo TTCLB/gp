@@ -430,7 +430,7 @@ obj.add(new Option("异动/停牌展示",0));
                         zss1=((res[0].hq[0][2]-res[0].hq[wz][2])/res[0].hq[wz][2]*100).toFixed(2);
                         shengyu=20-(ggs1-zss1);
                       zz=(dzh-zzh).toFixed(2);
-                      
+                      if(zz<0){shengyu=-20-(gg1-zs1);}
                       if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
                           
@@ -479,7 +479,13 @@ obj.add(new Option("异动/停牌展示",0));
                         zhis=(gzs-qgg)/qgg;
                         zhis=(((zhis-0.2)+1)*qzs).toFixed(2);
                         zfb=((zhis-qzs)/qzs*100).toFixed(2)
-                       
+                       if(zz<0){
+                           yidongjia=(((-0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
+                            gzs=(result[0].hq[0][2]/1.1).toFixed(2);
+                            zhis=(gzs-qgg)/qgg;
+                            zhis=Math.abs(((-0.2-zhis)-1)*qzs).toFixed(2);
+                            zfb=((zhis-qzs)/qzs*100).toFixed(2);
+                       }                        
                         
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
@@ -492,7 +498,8 @@ obj.add(new Option("异动/停牌展示",0));
                         if(qswz<wz){wz=qswz}
                          gg1=((Number(cf[13])-result[0].hq[wz][2])/result[0].hq[wz][2]*100).toFixed(2);
                         zs1=((Number(cf[3])-res[0].hq[wz][2])/res[0].hq[wz][2]*100).toFixed(2);
-                        shengyu=20-(gg1-zs1);                     
+                        shengyu=20-(gg1-zs1);
+                        if(zz<0){shengyu=-20-(gg1-zs1);}
                     document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】异动";
                     }
                     else{
@@ -501,7 +508,8 @@ obj.add(new Option("异动/停牌展示",0));
                         if(qswz<wz){wz=qswz}
                          gg1=((Number(cf[13])-result[0].hq[wz][2])/result[0].hq[wz][2]*100).toFixed(2);
                         zs1=((Number(cf[3])-res[0].hq[wz][2])/res[0].hq[wz][2]*100).toFixed(2);
-                        shengyu=20-(gg1-zs1);                     
+                        shengyu=20-(gg1-zs1); 
+                        if(zz<0){shengyu=-20-(gg1-zs1);}
                     document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】异动";                            
                         }
                     }
@@ -510,7 +518,8 @@ obj.add(new Option("异动/停牌展示",0));
                         if(qswz<wz){wz=qswz}
                          gg1=((Number(cf[13])-result[0].hq[wz][2])/result[0].hq[wz][2]*100).toFixed(2);
                         zs1=((Number(cf[3])-res[0].hq[wz][2])/res[0].hq[wz][2]*100).toFixed(2);
-                        shengyu=20-(gg1-zs1);                     
+                        shengyu=20-(gg1-zs1); 
+                        if(zz<0){shengyu=-20-(gg1-zs1);}
                          document.getElementById('wei1').value="明涨幅超【"+shengyu+"%】就异动（大盘涨幅未计入）";                        
                     }
                       }
