@@ -467,10 +467,7 @@ obj1.add(new Option("实时价格连板价",0));
                  //       zzh=zzh.toFixed(7);
                    // }
                     console.log(zzh)
-                     if(pz==1){
 
-                        
-                    }
                     esj=charu(etime,4,"-");
                     esj=charu(esj,7,"-");
                     for(var qw=1;qw<20;qw++){//找出10天前是哪一个日期
@@ -540,9 +537,19 @@ obj1.add(new Option("实时价格连板价",0));
                       zz=(ggzs-dpzs).toFixed(2);
                       yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
                       console.log("异动:"+yidongjia)
+                      
+                        gzs=(result[0].hq[0][2]*1.1).toFixed(2);
+                        zhis=(gzs-qgg)/qgg;
+                        zhis=(((zhis-0.2)+1)*qzs).toFixed(2);
+                        zfb=((zhis-qzs)/qzs*100).toFixed(2)
+                       
+                        
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
                     document.getElementById('wei').value="偏离值:"+zz+"【异动价:"+yidongjia+"】"+youguan;
+                    if(zhis>0){
+                    document.getElementById('wei1').value="涨停深综不能小于:"+zhis+"【"+zfb+"%】否则就异动";
+                    }
                     if(h>=15&&0>xingqi<6){
                         wz=1;
                         if(qswz<wz){wz=qswz}
@@ -885,9 +892,19 @@ obj1.add(new Option("实时价格连板价",0));
                       zz=(ggzs-dpzs).toFixed(2);
                       yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
                       console.log("异动:"+yidongjia)
+                      
+                        gzs=(result[0].hq[0][2]*1.1).toFixed(2);
+                        zhis=(gzs-qgg)/qgg;
+                        zhis=(((zhis-0.2)+1)*qzs).toFixed(2);
+                        zfb=((zhis-qzs)/qzs*100).toFixed(2)
+                       
+                        
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
-                            document.getElementById('wei').value="偏离值:"+zz+"【异动价:"+yidongjia+"】"+youguan;
+                    document.getElementById('wei').value="偏离值:"+zz+"【异动价:"+yidongjia+"】"+youguan;
+                    if(zhis>0){
+                    document.getElementById('wei1').value="涨停深综不能小于:"+zhis+"【"+zfb+"%】否则就异动";
+                    }
                     if(h>=15&&0>xingqi<6){
                         wz=1;
                         if(qswz<wz){wz=qswz}
