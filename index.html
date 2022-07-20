@@ -538,8 +538,14 @@ obj1.add(new Option("实时价格连板价",0));
                       console.log("实时个股涨幅:"+ggzs)
                       zz=(ggzs-dpzs).toFixed(2);
                       
-                      yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
                       
+                      if(result[0].hq.length<2){
+                          yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[0][2]);
+                          
+                      }
+                      else{
+                          yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
+                      }
                       console.log("异动:"+yidongjia)
                       
                         gzs=(result[0].hq[0][2]*1.1).toFixed(2);
@@ -914,7 +920,13 @@ obj1.add(new Option("实时价格连板价",0));
                       console.log("实时指数涨幅:"+dpzs)
                       console.log("实时个股涨幅:"+ggzs)
                       zz=(ggzs-dpzs).toFixed(2);
-                      yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
+                      if(result[0].hq.length<2){
+                          yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[0][2]);
+                          
+                      }
+                      else{
+                          yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
+                      }
                       console.log("异动:"+yidongjia)
                       
                         gzs=(result[0].hq[0][2]*1.1).toFixed(2);
