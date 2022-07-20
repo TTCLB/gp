@@ -463,13 +463,22 @@ obj.add(new Option("异动/停牌展示",0));
                       console.log("实时指数涨幅:"+dpzs)
                       console.log("实时个股涨幅:"+ggzs)
                       zz=(ggzs-dpzs).toFixed(2);
-                      yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
+                      if(result[0].hq.length<2){
+                          yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[0][2]);
+                          
+                      }
+                      else{
+                          yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
+                      }
                       console.log("异动:"+yidongjia)
                       
-                        gzs=(result[0].hq[0][2]*1.1).toFixed(2);
-                        zhis=(gzs-qgg)/qgg;
+                        ggzs=(result[0].hq[0][2]*1.1).toFixed(2);
+                        zhis=(ggzs-qgg)/qgg;
+                        console.log("sb"+ggzs)
+                        console.log("sb"+qgg)
                         zhis=(((zhis-0.2)+1)*qzs).toFixed(2);
                         zfb=((zhis-qzs)/qzs*100).toFixed(2)
+                        
                        if(zz<0){
                            yidongjia=(((-0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[2][2]);
                             gzs=(result[0].hq[0][2]/1.1).toFixed(2);
@@ -494,7 +503,7 @@ obj.add(new Option("异动/停牌展示",0));
                     document.getElementById('wei1').value="明超【"+shengyu+"%】异动";
                     }
                     else{
-                        if(h<=9){
+                        if(h<9){
                         wz=2;
                         if(qswz<wz){wz=qswz}
                          gg1=((Number(cf[13])-result[0].hq[wz][2])/result[0].hq[wz][2]*100);
