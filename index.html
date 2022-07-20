@@ -325,7 +325,7 @@ obj1.add(new Option("实时价格连板价",0));
                     for(var c=0;c<xin.data.list.length;c++){
                         
                          code=xin.data.list[c].art_code;
-                         shijian=xin.data.list[c].display_time.split(" ");
+                         shijian=xin.data.list[c].eiTime.split(" ");
                          shijian=shijian[0];
                          console.log(shijian)
 
@@ -716,7 +716,7 @@ obj1.add(new Option("实时价格连板价",0));
                     document.getElementById('daima').value=mama+"【"+xin.data.list[0].codes[0].short_name+"】"
                     for(var c=0;c<xin.data.list.length;c++){
                          code=xin.data.list[c].art_code;
-                         shijian=xin.data.list[c].display_time.split(" ");
+                         shijian=xin.data.list[c].eiTime.split(" ");
                          shijian=shijian[0];
                        
                          neirong=xin.data.list[c].title;
