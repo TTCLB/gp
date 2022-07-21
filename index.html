@@ -355,6 +355,9 @@ obj1.add(new Option("实时价格连板价",0));
                              if(new Date(Date.parse(shijian))==zzsj&&neirong.indexOf("波动")!=-1&&neirong.indexOf("回")==-1){
                                  jsbd=jsbd+1;
                              }
+                             if(new Date(Date.parse(shijian))==zzsj&&neirong.indexOf("异动")!=-1){
+                                 jsbd=jsbd+1;
+                             }                                 
                              ggsj=(Date.parse(shijian));
 
                              if(neirong.indexOf("波动")!=-1 && ggsj>=zzsj && neirong.indexOf("回")==-1){
@@ -365,6 +368,12 @@ obj1.add(new Option("实时价格连板价",0));
                                  if(bd==1){qssj=shijian}
                                  
                              }
+                             if(neirong.indexOf("异动")!=-1 && ggsj>=zzsj){
+                                 bd=bd+1;
+                                  console.log(bd)
+                                 dyyd=shijian;
+                                 if(bd==1){qssj=shijian}
+                             }                              
                              //else{
                             //     if(ggsj<zzsj){qssj=shijian}
                             // }
@@ -741,17 +750,28 @@ obj1.add(new Option("实时价格连板价",0));
                              
                              
                              zzsj=startDate1;
-                             console.log(zzsj)
-                             if(new Date(Date.parse(shijian))==zzsj&&neirong.indexOf("波动")!=-1&&neirong.indexOf("回")==-1){
+                              if(new Date(Date.parse(shijian))==zzsj&&neirong.indexOf("波动")!=-1&&neirong.indexOf("回")==-1){
                                  jsbd=jsbd+1;
                              }
+                             if(new Date(Date.parse(shijian))==zzsj&&neirong.indexOf("异动")!=-1){
+                                 jsbd=jsbd+1;
+                             }                                 
                              ggsj=(Date.parse(shijian));
+
                              if(neirong.indexOf("波动")!=-1 && ggsj>=zzsj && neirong.indexOf("回")==-1){
+
                                  bd=bd+1;
+                                  console.log(bd)
                                  dyyd=shijian;
                                  if(bd==1){qssj=shijian}
                                  
                              }
+                             if(neirong.indexOf("异动")!=-1 && ggsj>=zzsj){
+                                 bd=bd+1;
+                                  console.log(bd)
+                                 dyyd=shijian;
+                                 if(bd==1){qssj=shijian}
+                             }    
                            
                              nr=xin.data.list[c].columns[0].column_name+"【"+shijian+"】";
                              obj.add(new Option(nr,yd));
