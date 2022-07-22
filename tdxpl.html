@@ -94,6 +94,7 @@ form-control{background-color:#1C1D21;}
     <script src="assets/layer_mobile/layer.js"></script>
     <script src="js/date.format.js"></script>
     <script src="js/gbk.js"></script>
+    
    <script>
    document.onkeydown = keyListener;
 function keyListener(e) {
@@ -226,7 +227,9 @@ console.log(daima)
  var jsbd=0;
  var pz=0;
  var qgg=0;
+ var qgg1=0;
  var qzs=0;
+ var qzs1=0;
  var qssj="2020-01-01";
  var qswz=2;
  var sftp=0;
@@ -273,7 +276,7 @@ obj.add(new Option("异动/停牌展示",0));
                          shijian=shijian[0];
                        
                          neirong=xin.data.list[c].title;
-                         console.log(neirong)
+
                          if(neirong.indexOf("波动")!=-1 || neirong.indexOf("异动")!=-1 || neirong.indexOf("停牌")!=-1 || neirong.indexOf("关注函")!=-1|| neirong.indexOf("复牌")!=-1){
                              yd=yd+1;
 
@@ -308,16 +311,16 @@ obj.add(new Option("异动/停牌展示",0));
                                  jsbd=jsbd+1;
                              }                             
                              ggsj=(Date.parse(shijian));
-                             console.log(shijian)
+
                              if(neirong.indexOf("波动")!=-1 && ggsj>=zzsj && neirong.indexOf("回")==-1){
-                                 console.log()
+
                                  bd=bd+1;
                                  dyyd=shijian;
                                  if(bd==1){
                                      qssj=shijian
                                      if(sftp==1){
                                          stime=timeF(new Date(shijian));
-                                         console.log(stime)
+
                                      }
                                  }
 
@@ -374,7 +377,7 @@ obj.add(new Option("异动/停牌展示",0));
                     console.log("个股数据")
                     console.log(result)
                     console.log(result[0].hq.length)
-                    if(result[0].hq.length==4) {pz=1}
+                    if(result[0].hq.length==4&&sftp!=1) {pz=1}
                     kswz=result[0].hq.length;
                     if(result[0].hq.length==1){qgg=result[0].hq[0][2];dzh=result[0].hq[0][2];}
                     jinru=0;
@@ -397,6 +400,9 @@ obj.add(new Option("异动/停牌展示",0));
                     console.log(qswz)
                     console.log(result[0].hq[qswz][0])
                      qgg=result[0].hq[qswz][2];
+                     if(qswz-1>0){
+                     qgg1=result[0].hq[qswz-1][2];
+                     }
                     console.log(qgg)
                     //console.log(dzh)
                     ////////if(nali=="深证"){
@@ -419,6 +425,9 @@ obj.add(new Option("异动/停牌展示",0));
                     console.log(res)
                     kswz1=res[0].hq.length;
                     qzs=res[0].hq[qswz][2];
+                    if(qswz-1>0){
+                     qzs1=res[0].hq[qswz-1][2];
+                     }
                     zzh=(res[0].hq[0][2]-res[0].hq[qswz][2])/res[0].hq[qswz][2]*100;
                     for(var b=0;b<kswz1;b++){
                         console.log("前"+(b+1)+"天指数收盘:"+res[0].hq[b][2])
@@ -507,7 +516,8 @@ obj.add(new Option("异动/停牌展示",0));
                       console.log("实时个股涨幅:"+ggzs)
                       
                       zz=(ggzs-dpzs).toFixed(2);
-                      
+                      console.log(qgg1)
+                      zz1=(((Number(cf[13])-qgg1)/qgg1*100)-((Number(cf[3])-qzs1)/qzs1*100)).toFixed(2);
                       if(result[0].hq.length<2){
                           yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[0][2]);
                           
@@ -541,7 +551,7 @@ obj.add(new Option("异动/停牌展示",0));
                         
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
-                    document.getElementById('wei').value="偏离:"+zz+"【异动价:"+(yidongjia).toFixed(2)+"】"+youguan;
+                    document.getElementById('wei').value="偏离:"+zz+"|"+zz1+"【异动价:"+(yidongjia).toFixed(2)+"】"+youguan;
                     if(zhis>0){
                     document.getElementById('wei1').value="涨停不能小:"+zhis+"【"+zfb+"%】";
                     }
