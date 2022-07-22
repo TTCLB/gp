@@ -278,7 +278,9 @@ console.log(daima)
  var jsbd=0;
  var pz=0;
  var qgg=0;
+ var qgg1=0;
  var qzs=0;
+ var qzs1=0;
  var qssj="2020-01-01";
  var qswz=2;
  var shengyu=0;
@@ -438,6 +440,9 @@ obj1.add(new Option("实时价格连板价",0));
                     console.log(qswz)
                     console.log(result[0].hq[qswz][0])
                      qgg=result[0].hq[qswz][2];
+                     if(qswz-1>0){
+                     qgg1=result[0].hq[qswz-1][2];
+                     }                     
                     console.log(qgg)
                     //console.log(dzh)
                     ////////if(nali=="深证"){
@@ -460,6 +465,9 @@ obj1.add(new Option("实时价格连板价",0));
                     console.log(res)
                     kswz1=res[0].hq.length;
                     qzs=res[0].hq[qswz][2];
+                    if(qswz-1>0){
+                     qzs1=res[0].hq[qswz-1][2];
+                     }                    
                     zzh=(res[0].hq[0][2]-res[0].hq[qswz][2])/res[0].hq[qswz][2]*100;
                     for(var b=0;b<kswz1;b++){
                         console.log("前"+(b+1)+"天指数收盘:"+res[0].hq[b][2])
@@ -546,7 +554,7 @@ obj1.add(new Option("实时价格连板价",0));
                       console.log("实时指数涨幅:"+dpzs)
                       console.log("实时个股涨幅:"+ggzs)
                       zz=(ggzs-dpzs).toFixed(2);
-                      
+                      zz1=(((Number(cf[13])-qgg1)/qgg1*100)-((Number(cf[3])-qzs1)/qzs1*100)).toFixed(2);                      
                       
                       if(result[0].hq.length<2){
                           yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[0][2]);
@@ -571,7 +579,7 @@ obj1.add(new Option("实时价格连板价",0));
                         console.log("zfb"+zhis)
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
-                    document.getElementById('wei').value="偏离值:"+zz+"【异动价:"+(yidongjia).toFixed(2)+"】"+youguan;
+                    document.getElementById('wei').value="偏离:"+zz+"|"+zz1+"【异动价:"+(yidongjia).toFixed(2)+"】"+youguan;
                     if(zhis>0){
                     document.getElementById('wei1').value="涨停深综不能小于:"+zhis+"【"+zfb+"%】否则就异动";
                     }
@@ -682,7 +690,9 @@ console.log(daima)
  var jsbd=0;
  var pz=0;
  var qgg=0;
+ var qgg1=0;
  var qzs=0;
+ var qzs1=0;
  var qssj="2020-01-01";
  var qswz=2;
  if(sj==sj1){
@@ -833,6 +843,9 @@ obj1.add(new Option("实时价格连板价",0));
                     console.log(qswz)
                     console.log(result[0].hq[qswz][0])
                      qgg=result[0].hq[qswz][2];
+                     if(qswz-1>0){
+                     qgg1=result[0].hq[qswz-1][2];
+                     }                     
                     console.log(qgg)
                     //console.log(dzh)
                     ////////if(nali=="深证"){
@@ -855,6 +868,9 @@ obj1.add(new Option("实时价格连板价",0));
                     console.log(res)
                     kswz1=res[0].hq.length;
                     qzs=res[0].hq[qswz][2];
+                    if(qswz-1>0){
+                     qzs1=res[0].hq[qswz-1][2];
+                     }
                     zzh=(res[0].hq[0][2]-res[0].hq[qswz][2])/res[0].hq[qswz][2]*100;
                     for(var b=0;b<kswz1;b++){
                         console.log("前"+(b+1)+"天指数收盘:"+res[0].hq[b][2])
@@ -898,6 +914,7 @@ obj1.add(new Option("实时价格连板价",0));
                         shengyu=20-(ggs1-zss1);
                         
                       zz=(dzh-zzh).toFixed(2);
+                      
                       if(zz<0){shengyu=-20-(gg1-zs1);}
                       if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
@@ -940,6 +957,7 @@ obj1.add(new Option("实时价格连板价",0));
                       console.log("实时指数涨幅:"+dpzs)
                       console.log("实时个股涨幅:"+ggzs)
                       zz=(ggzs-dpzs).toFixed(2);
+                      zz1=(((Number(cf[13])-qgg1)/qgg1*100)-((Number(cf[3])-qzs1)/qzs1*100)).toFixed(2);                      
                       if(result[0].hq.length<2){
                           yidongjia=(((0.2-(ggzs-dpzs)/100)+(ggzs/100)+1)*result[0].hq[0][2]);
                           
@@ -963,7 +981,7 @@ obj1.add(new Option("实时价格连板价",0));
                         
                          if(zz==0.00){document.getElementById('wei').value="出了新的异动，偏离值明重新累计"}
                       else{
-                    document.getElementById('wei').value="偏离值:"+zz+"【异动价:"+(yidongjia).toFixed(2)+"】"+youguan;
+                    document.getElementById('wei').value="偏离:"+zz+"|"+zz1+"【异动价:"+(yidongjia).toFixed(2)+"】"+youguan;
                     if(zhis>0){
                     document.getElementById('wei1').value="涨停深综不能小于:"+zhis+"【"+zfb+"%】否则就异动";
                     }
