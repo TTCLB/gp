@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="referrer" content="no-referrer"/>
+<meta name="referrer" content="never"/>
+<meta name="referrer" content="same-origin"/>
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+		<link rel="shortcut icon" href="/favicon.ico">
+    <!-- Styles -->
+           <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+           <link href="assets/css/style.css" rel="stylesheet">
+           <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+           <title>连扳股概念</title>
+    <script>
+    </script>
+</head>
+
+<body class="bg-primary" onload="lsgc()">
+
+    <div class="unix-login">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <span style="color:#000000">连扳股概念</span>
+                        </div>
+                         <div class="card">
+                             <div class="card-title" id="tou" style="margin-bottom:-5%">
+                                 </div>
+
+                                <div class="card-body">
+                                    <div class="input-sizes">
+                                        <form class="form-horizontal fc-view" >
+                                                  
+                                   <div class="form-group" >
+                                             
+                                           <div class="row">
+                                              <div class="col-lg-2">
+
+                                              </div>
+                                                <div class="col-lg-2">
+                                                    <input id="tj1x" type="text" value="1.5" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" style="padding:0 1.5rem">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <h5 style="color:red;margin-top:0.5rem;padding:0 2.5rem">&lt;竞价成交额占比&lt;</h3>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <input id="tj1d" type="text" value="100" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" style="padding:0 1.2rem">
+                                                </div>                                                
+                                            </div> 
+
+                                   </div>
+                                   
+                                   <div class="form-group">
+                                        <div class="row">
+                                          <div class="col-lg-2">
+
+                                          </div>
+                                            <div class="col-lg-2">
+                                                <input id="tj2x" type="text" value="1.5" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" style="padding:0 1.5rem">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h5 style="color:red;margin-top:0.5rem;padding:0 2.5rem">&lt;竞价涨幅&lt;</h3>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <input id="tj2d" type="text" value="100" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" style="padding:0 1.2rem">
+                                            </div>                                                
+                                        </div> 
+                                    </div>
+                                    
+                                   <div class="form-group">
+                                           <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="1t2"  style="margin-bottom:-3%">
+																<option value="00">一进二筛选结果</option>
+													</select>
+                                                    
+                                                </div>
+                                            </div>         
+                                            </div> 
+                                   <div class="form-group">
+                                           <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="2t3"  style="margin-bottom:-3%" >
+																<option value="0">二进三筛选结果</option>
+													</select>
+                                                    
+                                                </div>
+                                            </div>     
+                                             </div> 
+                                             
+                                   <div class="form-group">
+                                           <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="3t4"  style="margin-bottom:-3%" >
+																<option value="0">三进四筛选结果</option>
+													</select>
+                                                    
+                                                </div>
+                                            </div>  
+                                            
+                                             </div> 
+
+                                   <div class="form-group" >                                            
+                                           <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="4t5"  style="margin-bottom:-3%">
+																<option value="0">四进五筛选结果</option>
+													</select>
+                                                    
+                                                </div>
+                                            </div>  
+                                        </div>
+                                      
+
+                                </div>
+                         </div>           
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/laydate/laydate.js"></script>
+    <script src="assets/layer_mobile/layer.js"></script>
+    <script src="js/date.format.js"></script>
+    <script src="js/gbk.js"></script>
+   <script>
+
+   
+   
+   
+   document.onkeydown = keyListener;
+function keyListener(e) {
+// 当按下回车键，执行我们的代码
+    if (e.keyCode == 13) {
+SubInfo();
+    }
+}
+function checkTime(i){
+	if (i<10) 
+  {i="0" + i}
+  
+  return i
+ 
+};
+
+function getsj(date) {
+    var year = date.getFullYear(); //getFullYear()代替getYear()
+    //月 getMonth()：0 ~ 11
+    var month = checkTime(date.getMonth() + 1);
+    //日 getDate()：(1 ~ 31)
+    var day = checkTime(date.getDate());
+    time=year+month+day
+    return time
+}
+
+
+function lsgc(){
+  $("#1t2").empty();
+  $("#2t3").empty();
+  $("#3t4").empty();
+  $("#4t5").empty();
+var tj1x=document.getElementById('tj1x').value;
+var tj1d=document.getElementById('tj1d').value;  
+var tj2x=document.getElementById('tj1x').value;
+var tj2d=document.getElementById('tj1d').value;
+sj=new Date();
+jintian=getsj(sj);
+zj=sj.getDay();
+
+if (zj == 1){
+    shangtian = sj.setDate(sj.getDate()-3);
+    shangtian=getsj(new Date(shangtian));
+}
+else if(2<zj<6){
+    shangtian = sj.setDate(sj.getDate()-1);
+    shangtian=getsj(new Date(shangtian)); 
+}
+for(var i=2;i<6;i++){
+    bk=i-1+"t"+i;
+    var objzt=document.getElementById(bk);
+    console.log(objzt)
+    $.ajax({
+        type:"get",//请求服务器载入数据
+        async: false,
+        url:"https://apphis.longhuvip.com/w1/api/index.php?Day=" + shangtian + "&Order=1&PhoneOSNew=2&PidType="+(i-1)+"&Type=4&VerSion=5.4.0.3&a=DailyLimitPerformance&apiv=w29&c=HisHomeDingPan&st=1000",
+        dataType:'html',
+        success:function(co){
+            lbg=JSON.parse(co);
+            for(var j=0;j<lbg.info[0].length;j++){
+                var dm = lbg.info[0][j][0]
+                var mz = lbg.info[0][j][1]
+                if (dm.slice(0,2)=="00"){
+                    $.ajax({
+                        type:"get",//请求服务器载入数据
+                        async: false,
+                        url:'https://apphis.longhuvip.com/w1/api/index.php?Day=' + shangtian + '&DeviceID=5a649d0e7243e127e4c0746687ab65f08f6c36e1&PhoneOSNew=2&StockID=' + dm + '&Token=f94a117fb8b93f606835a54bf034375d&UserID=1249058&VerSion=5.6.0.3&a=GetStockTrend&apiv=w30&c=StockL2History',
+                        dataType:'html',
+                        success:function(co1){
+                            shuju=JSON.parse(co1);
+                            zuocj = shuju.total_turnover
+                            $.ajax({
+                                type:"get",//请求服务器载入数据
+                                async: false,
+                                url:'https://apphq.longhuvip.com/w1/api/index.php?DeviceID=5a649d0e7243e127e4c0746687ab65f08f6c36e1&PhoneOSNew=2&State=1&StockID=' + dm + '&Token=f94a117fb8b93f606835a54bf034375d&UserID=1249058&VerSion=5.6.0.3&a=GetStockTrendIncremental&apiv=w30&c=StockL2Data',
+                                dataType:'html',
+                                success:function(co2){
+                                    shuju1=JSON.parse(co2);
+                                    zuosp = shuju.preclose_px
+                                    jkp = shuju.begin_px
+                                    jjj = shuju.trend[0][3] * 100 * jkp
+                                    tj1 = (jjj / zuocj * 100).toFixed(2);
+                                    tj2 = ((jkp - zuosp) / zuosp * 100).toFixed(2);
+                                    if(i!=2){
+                                        tj2x = -5;
+                                    }
+                                    if(tj1x<tj1<tj1d&&tj2x<tj2<tj2d){
+                                        nr=mz+'【'+dm+'】';
+                                        objzt.add(new Option(nr,dm));                                         
+                                    }
+                                }
+                            })
+                        }
+                    })
+}
+            }                   
+           // console.log(lbg)
+        }
+    })
+}
+//alert("加载完成")
+
+//console.log(bk)
+
+//objzt.add(new Option('43','343'));
+//console.log(i)
+}
+
+
+
+   </script>
+</body>
+</html>
