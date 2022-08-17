@@ -21,7 +21,7 @@
            <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
            <link href="assets/css/style.css" rel="stylesheet">
            <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
-           <title>筛选股票</title>
+           <title>晋级筛选</title>
     <script>
     </script>
 </head>
@@ -34,7 +34,7 @@
                 <div class="col-lg-6">
                     <div class="login-content">
                         <div class="login-logo">
-                            <span style="color:#000000">筛选股票</span>
+                            <span style="color:#000000">晋级筛选</span>
                         </div>
                          <div class="card">
                              <div class="card-title" id="tou" style="margin-bottom:-5%">
@@ -196,7 +196,6 @@ else if(2<zj<6){
 for(var i=2;i<6;i++){
     bk=i-1+"t"+i;
     var objzt=document.getElementById(bk);
-    console.log(objzt)
     $.ajax({
         type:"get",//请求服务器载入数据
         async: false,
@@ -223,15 +222,16 @@ for(var i=2;i<6;i++){
                                 dataType:'html',
                                 success:function(co2){
                                     shuju1=JSON.parse(co2);
-                                    zuosp = shuju.preclose_px
-                                    jkp = shuju.begin_px
-                                    jjj = shuju.trend[0][3] * 100 * jkp
-                                    tj1 = (jjj / zuocj * 100).toFixed(2);
+                                    zuosp = shuju1.preclose_px
+                                    jkp = shuju1.begin_px
+                                    jjj = shuju1.trend[0][3] * 100 * jkp
+                                    tj1 = (jjj / (jjj+zuocj) * 100).toFixed(2);
                                     tj2 = ((jkp - zuosp) / zuosp * 100).toFixed(2);
                                     if(i!=2){
                                         tj2x = -5;
                                     }
-                                    if(tj1x<tj1<tj1d&&tj2x<tj2<tj2d){
+
+                                    if(Number(tj1x)<tj1==true&&tj1<Number(tj1d)==true&&Number(tj2x)<tj2==true&&tj2<Number(tj2d)==true){
                                         nr=mz+'【'+dm+'】';
                                         objzt.add(new Option(nr,dm));                                         
                                     }
