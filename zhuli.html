@@ -231,7 +231,7 @@ var cs=document.getElementById('cs');
                                 buyl.push(liang);
                                 buyj.push(danjia);
                                 bh=bh+liang;
-                                console.log(bh)
+         
                                 //bss.add(new Option(danjia+"【"+liang+"】",i));
                             }
                             else{
@@ -248,7 +248,7 @@ var cs=document.getElementById('cs');
                                 obj[item]= (obj[item]+selll[i])|| selll[i]; 
                                 
                         }
-                        console.log(obj)
+
                         bk=Array.from(new Set(sellj));
                         var bkk=[];
                         for(var i=0;i<bk.length;i++){
@@ -267,7 +267,7 @@ var cs=document.getElementById('cs');
                                 obj[item]= (obj[item]+buyl[i])|| buyl[i]; 
                                 
                         }
-                        console.log(obj)
+
                         bk=Array.from(new Set(buyj));
                         var bkk=[];
                         for(var i=0;i<bk.length;i++){
@@ -277,9 +277,7 @@ var cs=document.getElementById('cs');
                           bkk.push(ob);
                         }
                    buy=listSortBy(bkk,'name','desc');                    
-                   
-                   console.log(buy)
-                    console.log(sell)                   
+                 
          
                     chazhi=0;
                     if(buy.length>=sell.length){
@@ -327,7 +325,7 @@ var cs=document.getElementById('cs');
                             
                         }                        
                     }
-                    console.log(chazhiz)
+        
                     let diff = [...buy]
 
                     for (let i = 0, len = buy.length; i < len; i++ ) {
