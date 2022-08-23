@@ -231,7 +231,7 @@ var cs=document.getElementById('cs');
                                 buyl.push(liang);
                                 buyj.push(danjia);
                                 bh=bh+liang;
-         
+                                console.log(bh)
                                 //bss.add(new Option(danjia+"【"+liang+"】",i));
                             }
                             else{
@@ -248,7 +248,7 @@ var cs=document.getElementById('cs');
                                 obj[item]= (obj[item]+selll[i])|| selll[i]; 
                                 
                         }
-
+                        console.log(obj)
                         bk=Array.from(new Set(sellj));
                         var bkk=[];
                         for(var i=0;i<bk.length;i++){
@@ -267,7 +267,7 @@ var cs=document.getElementById('cs');
                                 obj[item]= (obj[item]+buyl[i])|| buyl[i]; 
                                 
                         }
-
+                        console.log(obj)
                         bk=Array.from(new Set(buyj));
                         var bkk=[];
                         for(var i=0;i<bk.length;i++){
@@ -277,7 +277,9 @@ var cs=document.getElementById('cs');
                           bkk.push(ob);
                         }
                    buy=listSortBy(bkk,'name','desc');                    
-                 
+                   
+                   console.log(buy)
+                    console.log(sell)                   
          
                     chazhi=0;
                     if(buy.length>=sell.length){
@@ -286,16 +288,18 @@ var cs=document.getElementById('cs');
                                 if(buy[b]["name"]==sell[ba]["name"]){
                                    chazhi= buy[b]["value"]-sell[ba]["value"];
                                    chazhi=(chazhi/10000).toFixed(0);
+                                   cs.add(new Option("【D】"+buy[b]["name"]+"【"+chazhi+"万】",b)); 
                                   var ob=new Object();
-                                  ob.name=buy[ba]["name"];
+                                  ob.name=buy[b]["name"];
                                   ob.value=parseFloat(chazhi);
-                                  chazhiz.push(ob);                                    
+                                  chazhiz.push(ob);     
+
                                 }
                                 if(b==0){
                                     ss.add(new Option("【S】"+sell[ba]["name"]+"【-"+(sell[ba]["value"]/10000).toFixed(0)+"万】",ba));
                                 }
                             }
-                            cs.add(new Option("【D】"+buy[b]["name"]+"【"+chazhi+"万】",b)); 
+
                             bss.add(new Option("【B】"+buy[b]["name"]+"【"+(buy[b]["value"]/10000).toFixed(0)+"万】",b));
                             
                         }
@@ -306,7 +310,7 @@ var cs=document.getElementById('cs');
                                 if(buy[ba]["name"]==sell[b]["name"]){
                                    chazhi= buy[ba]["value"]-sell[b]["value"];
                                    chazhi=(chazhi/10000).toFixed(0);
-
+                                   cs.add(new Option("【D】"+sell[b]["name"]+"【"+chazhi+"万】",b)); 
                                    //item = buy[ba]["name"]; 
                                   // chazhiz[item]= chazhi; 
                                   var ob=new Object();
@@ -320,14 +324,15 @@ var cs=document.getElementById('cs');
 
                                 }
                             }
-                            cs.add(new Option("【D】"+sell[b]["name"]+"【"+chazhi+"万】",b)); 
+ 
                             ss.add(new Option("【S】"+sell[b]["name"]+"【-"+(sell[b]["value"]/10000).toFixed(0)+"万】",b));                           
                             
                         }                        
                     }
-        
+                    console.log(buy)
+                    console.log(chazhiz)
                     let diff = [...buy]
-
+                    console.log(diff)
                     for (let i = 0, len = buy.length; i < len; i++ ) {
                       let flag = false
 
@@ -346,6 +351,7 @@ var cs=document.getElementById('cs');
                     for(var q=0;q<diff.length;q++){
                         cs.add(new Option("【B】"+diff[q]["name"]+"【"+(diff[q]["value"]/10000).toFixed(0)+"万】",q));
                     } 
+                    
                     //上面是买盘，下面是卖
                     let diff1 = [...sell]
 
@@ -382,4 +388,5 @@ var cs=document.getElementById('cs');
 
    </script>
 </body>
+
 </html>
