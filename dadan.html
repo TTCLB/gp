@@ -1,0 +1,645 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="referrer" content="no-referrer"/>
+<meta name="referrer" content="never"/>
+<meta name="referrer" content="same-origin"/>
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+		<link rel="shortcut icon" href="/favicon.ico">
+    <!-- Styles -->
+           <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+           <link href="assets/css/style.css" rel="stylesheet">
+           <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+           <title>大单统计</title>
+    <script>
+    </script>
+</head>
+
+<body class="bg-primary">
+
+    <div class="unix-login">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <span style="color:#000000"onclick="shuaxin()">大单统计</span>
+
+                            <p onclick="shuaxin()" style="color:green">→【盘中实时更新，点我刷新】←</p>
+                        </div>
+                         <div class="card">
+                             <div class="card-title" id="tou" style="margin-bottom:-5%">
+                                 </div>
+
+                                <div class="card-body">
+                                    <div class="input-sizes">
+                                        <form class="form-horizontal fc-view" >
+                                                  
+                                   <div class="form-group" style="top">
+
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <input id="daima" type="text" placeholder="点这输码支持中文全称，点空白处出数据" class="form-control"  name="example-input-small" lay-key="1" onblur="lsgc()" onclick="qingkong()">
+                                                    
+                                                </div>
+               
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">      
+                                                    <select class="form-control" id="cs"  ></select>
+                                                </div>
+                                            </div>
+													
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">      
+                                                    <select class="form-control" id="bs"  ></select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">      
+                                                    <select class="form-control" id="ss"  ></select>
+                                                </div>
+                                            </div>                                            
+
+                                                    
+
+                                        
+                                        </form>
+                                    </div>
+                                </div>
+                         </div>           
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/laydate/laydate.js"></script>
+    <script src="assets/layer_mobile/layer.js"></script>
+    <script src="js/date.format.js"></script>
+    <script src="js/gbk.js"></script>
+   <script>
+   document.onkeydown = keyListener;
+function keyListener(e) {
+// 当按下回车键，执行我们的代码
+    if (e.keyCode == 13) {
+SubInfo();
+    }
+}
+function checkTime(i){
+	if (i<10) 
+  {i="0" + i}
+  
+  return i
+ 
+};
+function timeFormat(date) {
+    if (!date || typeof(date) === "string") {
+        this.error("参数异常，请检查...");
+    }
+    var y = date.getFullYear(); //年
+    var m = checkTime(date.getMonth() + 1); //月
+    var d = checkTime(date.getDate()); //日
+
+    return y + "-" + m + "-" + d;
+}
+
+function charu(soure, start, newStr){   
+   return soure.slice(0, start) + newStr + soure.slice(start);
+}
+$(function(){
+    laydate.render({
+  elem: '#EndTime'
+  ,type: 'datetime'
+  ,value: new Date() 
+  ,zIndex: 99999999
+  ,format: 'yyyyMMdd'
+});
+
+ laydate.render({
+  elem: '#StartTime'
+  ,type: 'datetime'
+  ,value: new Date() 
+  ,zIndex: 99999999
+  ,format: 'yyyyMMdd'
+});
+
+});
+function shuaxin(){
+
+     var tou = document.getElementById("tou");
+    remove_md = tou.lastElementChild;
+    if(remove_md!=null){
+    tou.removeChild(remove_md);  
+    }
+
+    var daima=$("#daima").val();
+    daima=daima.slice(0,6);
+    console.log(daima)
+    document.getElementById('daima').value=daima;
+    lsgc();
+}
+
+function qingkong(){
+     var tou = document.getElementById("tou");
+    remove_md = tou.lastElementChild;
+    if(remove_md!=null){
+    tou.removeChild(remove_md);  
+    }
+    remove_md = tou.lastElementChild;
+    if(remove_md!=null){
+    tou.removeChild(remove_md);  
+    }
+    document.getElementById('daima').value="";
+    
+}
+function encodeToGb2312(str){
+    var strOut="";
+    for(var i = 0; i < str.length; i++){
+        var c = str.charAt(i); 
+        var code = str.charCodeAt(i);
+        if(c==" ") strOut +="+";
+        else if(code >= 19968 && code <= 40869){
+            index = code - 19968;
+            strOut += "%" + z.substr(index*4,2) + "%" + z.substr(index*4+2,2);
+        }
+        else{
+            strOut += "%" + str.charCodeAt(i).toString(16);
+        }
+    }
+    return strOut;
+}
+ function listSortBy(arr, field, order){
+    var refer = [], result=[], order = order=='asc'?'asc':'desc', index;
+    for(i=0; i<arr.length; i++){
+        refer[i] = arr[i][field]+':'+i;
+    }
+        refer.sort(function (a,b) {
+            a=parseFloat(a);
+            b=parseFloat(b);
+            if (a < b ) {    
+                return -1;
+            }
+            if (a > b ) {
+                return 1;
+            }
+            // a must be equal to b
+            return 0;
+        });
+
+
+    if(order=='desc') refer.reverse();
+    for(i=0;i<refer.length;i++){
+        index = refer[i].split(':')[1];
+        result[i] = arr[index];
+    }
+    return result;
+}
+function lsgc(){
+
+var daima="";
+var mama="";
+  $("#bs").empty();
+  $("#cs").empty();
+  $("#ss").empty();
+
+if(isNaN($("#daima").val())==true){
+    bianma=$URL.encode($("#daima").val());
+    console.log(bianma)
+                   $.ajax({
+                type:"get",//请求服务器载入数据
+                //async: false,
+                url:"https://q.stock.sohu.com/app1/stockSearch?method=search&type=all&keyword="+bianma+"&rt=jsonp",
+                             dataType:'jsonp',//服务器返回json格式数据
+                             jsonpCallback:'callback',
+                             jsonp: 'callback',
+                             crossDomain: true,
+                             //data:"{}",
+                             ContentType:'application/javascript',
+                success:function(co){
+                    console.log(co.result.length)
+                    if(co.result.length==0){alert("输入有误，重新输入")}
+                    daima=co.result[0][0];
+                    zfc=co.result[0][1];
+                    mz=co.result[0][2];
+                    mz=mz.replace(/(<([^>]+)>)/ig, "");
+                    document.getElementById('daima').value=zfc+"【"+mz+"】"
+                    console.log(mz)
+var cd=0;
+var bh=0;
+var sh=0;
+var buyl=new Array();
+var buyj=new Array();
+var selll=new Array();
+var sellj=new Array();
+var chazhiz=[];
+var bss=document.getElementById('bs');
+var ss=document.getElementById('ss');
+var cs=document.getElementById('cs');
+            $.ajax({
+                type:"get",//请求服务器载入数据
+               // async: false,
+                url:"https://vaserviece.10jqka.com.cn/Level2/index.php?op=mainMonitorDetail&stockcode="+zfc+"&f_node=0&s_node=0&rt=jsonp",
+                             dataType:'html',//服务器返回json格式数据
+                             //jsonpCallback:'cb',
+                             //jsonp: 'cb',
+                             crossDomain: true,
+                             //data:"{}",                         
+                success:function(xin){
+                    shuju=JSON.parse(xin)
+
+                    for(var i=0;i<shuju.list.length;i++){
+                            liang=shuju.list[i].money;
+                            bs=shuju.list[i].tradetype;
+                            danjia=shuju.list[i].avgprice;
+                 
+                            if (bs==1){
+                                buyl.push(liang);
+                                buyj.push(danjia);
+                                bh=bh+liang;
+                                console.log(bh)
+                                //bss.add(new Option(danjia+"【"+liang+"】",i));
+                            }
+                            else{
+                                selll.push(liang);
+                                sellj.push(danjia); 
+                                sh=sh+liang;
+                                //ss.add(new Option(danjia+"【-"+liang+"】",i));                                
+                            }
+                    }
+                        var obj = {}; 
+                          for(var i= 0, l = sellj.length; i< l; i++){ 
+                                var item = sellj[i]; 
+                                
+                                obj[item]= (obj[item]+selll[i])|| selll[i]; 
+                                
+                        }
+                        console.log(obj)
+                        bk=Array.from(new Set(sellj));
+                        var bkk=[];
+                        for(var i=0;i<bk.length;i++){
+                          var ob=new Object();
+                          ob.name=bk[i];
+                          ob.value=parseFloat(obj[ob.name]);
+                          bkk.push(ob);
+                        }
+                   sell=listSortBy(bkk,'name','desc'); 
+
+
+                        var obj = {}; 
+                          for(var i= 0, l = buyj.length; i< l; i++){ 
+                                var item = buyj[i]; 
+                                
+                                obj[item]= (obj[item]+buyl[i])|| buyl[i]; 
+                                
+                        }
+                        console.log(obj)
+                        bk=Array.from(new Set(buyj));
+                        var bkk=[];
+                        for(var i=0;i<bk.length;i++){
+                          var ob=new Object();
+                          ob.name=bk[i];
+                          ob.value=parseFloat(obj[ob.name]);
+                          bkk.push(ob);
+                        }
+                   buy=listSortBy(bkk,'name','desc');                    
+                   
+                   console.log(buy)
+                    console.log(sell)                   
+         
+                    chazhi=0;
+                    if(buy.length>=sell.length){
+                        for(var b=0;b<buy.length;b++){
+                            for(var ba=0;ba<sell.length;ba++){
+                                if(buy[b]["name"]==sell[ba]["name"]){
+                                   chazhi= buy[b]["value"]-sell[ba]["value"];
+                                   chazhi=(chazhi/10000).toFixed(0);
+                                   cs.add(new Option("【D】"+buy[b]["name"]+"【"+chazhi+"万】",b)); 
+                                  var ob=new Object();
+                                  ob.name=buy[b]["name"];
+                                  ob.value=parseFloat(chazhi);
+                                  chazhiz.push(ob);     
+
+                                }
+                                if(b==0){
+                                    ss.add(new Option("【S】"+sell[ba]["name"]+"【-"+(sell[ba]["value"]/10000).toFixed(0)+"万】",ba));
+                                }
+                            }
+
+                            bss.add(new Option("【B】"+buy[b]["name"]+"【"+(buy[b]["value"]/10000).toFixed(0)+"万】",b));
+                            
+                        }
+                    }
+                    else{
+                        for(var b=0;b<sell.length;b++){
+                            for(var ba=0;ba<buy.length;ba++){
+                                if(buy[ba]["name"]==sell[b]["name"]){
+                                   chazhi= buy[ba]["value"]-sell[b]["value"];
+                                   chazhi=(chazhi/10000).toFixed(0);
+                                   cs.add(new Option("【D】"+sell[b]["name"]+"【"+chazhi+"万】",b)); 
+                                   //item = buy[ba]["name"]; 
+                                  // chazhiz[item]= chazhi; 
+                                  var ob=new Object();
+                                  ob.name=buy[ba]["name"];
+                                  ob.value=parseFloat(chazhi);
+                                  chazhiz.push(ob);                                  
+                                }
+
+                                if(b==0){
+                                    bss.add(new Option("【B】"+buy[ba]["name"]+"【"+(buy[ba]["value"]/10000).toFixed(0)+"万】",ba)); 
+
+                                }
+                            }
+ 
+                            ss.add(new Option("【S】"+sell[b]["name"]+"【-"+(sell[b]["value"]/10000).toFixed(0)+"万】",b));                           
+                            
+                        }                        
+                    }
+                    console.log(buy)
+                    console.log(chazhiz)
+                    let diff = [...buy]
+                    console.log(diff)
+                    for (let i = 0, len = buy.length; i < len; i++ ) {
+                      let flag = false
+
+                      for (let j = 0, length = chazhiz.length; j < length; j++) {
+                          //console.log(buy[i].name)
+                          //console.log(chazhiz[j].name)
+                        if (buy[i].name == chazhiz[j].name) {
+                          flag = true
+                        }
+                      }
+                      if (flag) {
+                          
+                        diff.splice(diff.findIndex(item => item.name == buy[i].name), 1)
+                      }
+                    }
+                    for(var q=0;q<diff.length;q++){
+                        cs.add(new Option("【B】"+diff[q]["name"]+"【"+(diff[q]["value"]/10000).toFixed(0)+"万】",q));
+                    } 
+                    
+                    //上面是买盘，下面是卖
+                    let diff1 = [...sell]
+
+                    for (let i = 0, len = sell.length; i < len; i++ ) {
+                      let flag = false
+
+                      for (let j = 0, length = chazhiz.length; j < length; j++) {
+                          //console.log(buy[i].name)
+                          //console.log(chazhiz[j].name)
+                        if (sell[i].name == chazhiz[j].name) {
+                          flag = true
+                        }
+                      }
+                      if (flag) {
+                          
+                        diff1.splice(diff1.findIndex(item => item.name == sell[i].name), 1)
+                      }
+                    }
+                    for(var q=0;q<diff1.length;q++){
+                        cs.add(new Option("【S】"+diff1[q]["name"]+"【-"+(diff1[q]["value"]/10000).toFixed(0)+"万】",q));
+                    }                     
+                    
+                    var tou = document.getElementById("tou");
+                    var h55 =document.createElement("h4");
+                    h55.style.color="#F79C08";
+                    h55.innerHTML="大单金额:"+((bh-sh)/100000000).toFixed(2)+"亿";
+                    tou.appendChild(h55);                    
+                    
+                }
+                
+            })
+
+ 
+            
+             },
+         })
+
+}    
+else{ 
+zfc=$("#daima").val();
+var mz ="";
+ $.ajax({
+                type:"get",//请求服务器载入数据
+                async: false,
+                url:"https://np-anotice-stock.eastmoney.com/api/security/ann?page_size=50&page_index=1&ann_type=A&client_source=web&stock_list="+zfc+"&f_node=0&s_node=0&rt=jsonp",
+                             dataType:'jsonp',//服务器返回json格式数据
+                             jsonpCallback:'cb',
+                             jsonp: 'cb',
+                             crossDomain: true,
+                             
+                             //data:"{}",                         
+                success:function(xin){
+                    yd=0;
+                    document.getElementById('daima').value=zfc+"【"+xin.data.list[0].codes[0].short_name+"】"
+                }
+ })
+
+var cd=0;
+var bh=0;
+var sh=0;
+var buyl=new Array();
+var buyj=new Array();
+var selll=new Array();
+var sellj=new Array();
+var chazhiz=[];
+var bss=document.getElementById('bs');
+var ss=document.getElementById('ss');
+var cs=document.getElementById('cs');
+            $.ajax({
+                type:"get",//请求服务器载入数据
+               // async: false,
+                url:"https://vaserviece.10jqka.com.cn/Level2/index.php?op=mainMonitorDetail&stockcode="+zfc+"&f_node=0&s_node=0&rt=jsonp",
+                             dataType:'html',//服务器返回json格式数据
+                             //jsonpCallback:'cb',
+                             //jsonp: 'cb',
+                             crossDomain: true,
+                             //data:"{}",                         
+                success:function(xin){
+                    shuju=JSON.parse(xin)
+
+                    for(var i=0;i<shuju.list.length;i++){
+                            liang=shuju.list[i].money;
+                            bs=shuju.list[i].tradetype;
+                            danjia=shuju.list[i].avgprice;
+                 
+                            if (bs==1){
+                                buyl.push(liang);
+                                buyj.push(danjia);
+                                bh=bh+liang;
+                                console.log(bh)
+                                //bss.add(new Option(danjia+"【"+liang+"】",i));
+                            }
+                            else{
+                                selll.push(liang);
+                                sellj.push(danjia); 
+                                sh=sh+liang;
+                                //ss.add(new Option(danjia+"【-"+liang+"】",i));                                
+                            }
+                    }
+                        var obj = {}; 
+                          for(var i= 0, l = sellj.length; i< l; i++){ 
+                                var item = sellj[i]; 
+                                
+                                obj[item]= (obj[item]+selll[i])|| selll[i]; 
+                                
+                        }
+                        console.log(obj)
+                        bk=Array.from(new Set(sellj));
+                        var bkk=[];
+                        for(var i=0;i<bk.length;i++){
+                          var ob=new Object();
+                          ob.name=bk[i];
+                          ob.value=parseFloat(obj[ob.name]);
+                          bkk.push(ob);
+                        }
+                   sell=listSortBy(bkk,'name','desc'); 
+
+
+                        var obj = {}; 
+                          for(var i= 0, l = buyj.length; i< l; i++){ 
+                                var item = buyj[i]; 
+                                
+                                obj[item]= (obj[item]+buyl[i])|| buyl[i]; 
+                                
+                        }
+                        console.log(obj)
+                        bk=Array.from(new Set(buyj));
+                        var bkk=[];
+                        for(var i=0;i<bk.length;i++){
+                          var ob=new Object();
+                          ob.name=bk[i];
+                          ob.value=parseFloat(obj[ob.name]);
+                          bkk.push(ob);
+                        }
+                   buy=listSortBy(bkk,'name','desc');                    
+                   
+                   console.log(buy)
+                    console.log(sell)                   
+         
+                    chazhi=0;
+                    if(buy.length>=sell.length){
+                        for(var b=0;b<buy.length;b++){
+                            for(var ba=0;ba<sell.length;ba++){
+                                if(buy[b]["name"]==sell[ba]["name"]){
+                                   chazhi= buy[b]["value"]-sell[ba]["value"];
+                                   chazhi=(chazhi/10000).toFixed(0);
+                                   cs.add(new Option("【D】"+buy[b]["name"]+"【"+chazhi+"万】",b)); 
+                                  var ob=new Object();
+                                  ob.name=buy[b]["name"];
+                                  ob.value=parseFloat(chazhi);
+                                  chazhiz.push(ob);     
+
+                                }
+                                if(b==0){
+                                    ss.add(new Option("【S】"+sell[ba]["name"]+"【-"+(sell[ba]["value"]/10000).toFixed(0)+"万】",ba));
+                                }
+                            }
+
+                            bss.add(new Option("【B】"+buy[b]["name"]+"【"+(buy[b]["value"]/10000).toFixed(0)+"万】",b));
+                            
+                        }
+                    }
+                    else{
+                        for(var b=0;b<sell.length;b++){
+                            for(var ba=0;ba<buy.length;ba++){
+                                if(buy[ba]["name"]==sell[b]["name"]){
+                                   chazhi= buy[ba]["value"]-sell[b]["value"];
+                                   chazhi=(chazhi/10000).toFixed(0);
+                                   cs.add(new Option("【D】"+sell[b]["name"]+"【"+chazhi+"万】",b)); 
+                                   //item = buy[ba]["name"]; 
+                                  // chazhiz[item]= chazhi; 
+                                  var ob=new Object();
+                                  ob.name=buy[ba]["name"];
+                                  ob.value=parseFloat(chazhi);
+                                  chazhiz.push(ob);                                  
+                                }
+
+                                if(b==0){
+                                    bss.add(new Option("【B】"+buy[ba]["name"]+"【"+(buy[ba]["value"]/10000).toFixed(0)+"万】",ba)); 
+
+                                }
+                            }
+ 
+                            ss.add(new Option("【S】"+sell[b]["name"]+"【-"+(sell[b]["value"]/10000).toFixed(0)+"万】",b));                           
+                            
+                        }                        
+                    }
+                    console.log(buy)
+                    console.log(chazhiz)
+                    let diff = [...buy]
+                    console.log(diff)
+                    for (let i = 0, len = buy.length; i < len; i++ ) {
+                      let flag = false
+
+                      for (let j = 0, length = chazhiz.length; j < length; j++) {
+                          //console.log(buy[i].name)
+                          //console.log(chazhiz[j].name)
+                        if (buy[i].name == chazhiz[j].name) {
+                          flag = true
+                        }
+                      }
+                      if (flag) {
+                          
+                        diff.splice(diff.findIndex(item => item.name == buy[i].name), 1)
+                      }
+                    }
+                    for(var q=0;q<diff.length;q++){
+                        cs.add(new Option("【B】"+diff[q]["name"]+"【"+(diff[q]["value"]/10000).toFixed(0)+"万】",q));
+                    } 
+                    
+                    //上面是买盘，下面是卖
+                    let diff1 = [...sell]
+
+                    for (let i = 0, len = sell.length; i < len; i++ ) {
+                      let flag = false
+
+                      for (let j = 0, length = chazhiz.length; j < length; j++) {
+                          //console.log(buy[i].name)
+                          //console.log(chazhiz[j].name)
+                        if (sell[i].name == chazhiz[j].name) {
+                          flag = true
+                        }
+                      }
+                      if (flag) {
+                          
+                        diff1.splice(diff1.findIndex(item => item.name == sell[i].name), 1)
+                      }
+                    }
+                    for(var q=0;q<diff1.length;q++){
+                        cs.add(new Option("【S】"+diff1[q]["name"]+"【-"+(diff1[q]["value"]/10000).toFixed(0)+"万】",q));
+                    }                     
+                    
+                    var tou = document.getElementById("tou");
+                    var h55 =document.createElement("h4");
+                    h55.style.color="#F79C08";
+                    h55.innerHTML="大单金额:"+((bh-sh)/100000000).toFixed(2)+"亿";
+                    tou.appendChild(h55);                    
+                    
+                }
+                
+            })
+}
+}
+
+   </script>
+</body>
+
+</html>
